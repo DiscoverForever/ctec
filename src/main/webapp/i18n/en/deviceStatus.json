@@ -1,0 +1,10 @@
+{
+    "ctecApp": {
+        "DeviceStatus" : {
+            "null": "",
+            "RUNNING": "RUNNING",
+            "STOP": "STOP",
+            "OVERHAULING": "OVERHAULING"
+        }
+    }
+}

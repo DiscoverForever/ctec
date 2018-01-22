@@ -1,0 +1,65 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAlarmRegionLabel" jhiTranslate="ctecApp.alarmRegion.home.createOrEditLabel">Create or edit a Alarm Region</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!alarmRegion.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="alarmRegion.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmRegion.leftUpX" for="field_leftUpX">Left Up X</label>
+            <input type="number" class="form-control" name="leftUpX" id="field_leftUpX"
+                [(ngModel)]="alarmRegion.leftUpX" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmRegion.leftUpY" for="field_leftUpY">Left Up Y</label>
+            <input type="number" class="form-control" name="leftUpY" id="field_leftUpY"
+                [(ngModel)]="alarmRegion.leftUpY" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmRegion.rightUpX" for="field_rightUpX">Right Up X</label>
+            <input type="number" class="form-control" name="rightUpX" id="field_rightUpX"
+                [(ngModel)]="alarmRegion.rightUpX" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmRegion.rightUpY" for="field_rightUpY">Right Up Y</label>
+            <input type="number" class="form-control" name="rightUpY" id="field_rightUpY"
+                [(ngModel)]="alarmRegion.rightUpY" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmRegion.leftDownX" for="field_leftDownX">Left Down X</label>
+            <input type="number" class="form-control" name="leftDownX" id="field_leftDownX"
+                [(ngModel)]="alarmRegion.leftDownX" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmRegion.leftDownY" for="field_leftDownY">Left Down Y</label>
+            <input type="number" class="form-control" name="leftDownY" id="field_leftDownY"
+                [(ngModel)]="alarmRegion.leftDownY" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmRegion.rightDownX" for="field_rightDownX">Right Down X</label>
+            <input type="number" class="form-control" name="rightDownX" id="field_rightDownX"
+                [(ngModel)]="alarmRegion.rightDownX" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmRegion.rightDownY" for="field_rightDownY">Right Down Y</label>
+            <input type="number" class="form-control" name="rightDownY" id="field_rightDownY"
+                [(ngModel)]="alarmRegion.rightDownY" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

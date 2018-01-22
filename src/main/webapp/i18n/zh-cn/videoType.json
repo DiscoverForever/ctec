@@ -1,0 +1,9 @@
+{
+    "ctecApp": {
+        "VideoType" : {
+            "null": "",
+            "LOCAL": "LOCAL",
+            "REALTIME": "REALTIME"
+        }
+    }
+}

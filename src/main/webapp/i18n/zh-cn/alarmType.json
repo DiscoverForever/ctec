@@ -1,0 +1,13 @@
+{
+    "ctecApp": {
+        "AlarmType" : {
+            "null": "",
+            "FAST_RUN_WARN": "FAST_RUN_WARN",
+            "PEOPLE_COUNT_LIMIT_WARN": "PEOPLE_COUNT_LIMIT_WARN",
+            "CROWDS_GATHER_WARN": "CROWDS_GATHER_WARN",
+            "VIGOROUSLY_WAVED_WARN": "VIGOROUSLY_WAVED_WARN",
+            "FIGHT_WARN": "FIGHT_WARN",
+            "ABNORMAL_ACTION_WARN": "ABNORMAL_ACTION_WARN"
+        }
+    }
+}

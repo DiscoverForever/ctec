@@ -1,0 +1,89 @@
+<div>
+    <h2>
+        <span jhiTranslate="ctecApp.analysisTask.home.title">Analysis Tasks</span>
+        <button class="btn btn-primary float-right jh-create-entity create-analysis-task" [routerLink]="['/', { outlets: { popup: ['analysis-task-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="ctecApp.analysisTask.home.createLabel">
+            Create new Analysis Task
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'ctecApp.analysisTask.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="analysisTasks">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="analysisType"><span jhiTranslate="ctecApp.analysisTask.analysisType">Analysis Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="priority"><span jhiTranslate="ctecApp.analysisTask.priority">Priority</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="analysisStatus"><span jhiTranslate="ctecApp.analysisTask.analysisStatus">Analysis Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="videoType"><span jhiTranslate="ctecApp.analysisTask.videoType">Video Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createdAt"><span jhiTranslate="ctecApp.analysisTask.createdAt">Created At</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="executionAt"><span jhiTranslate="ctecApp.analysisTask.executionAt">Execution At</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let analysisTask of analysisTasks ;trackBy: trackId">
+                <td><a [routerLink]="['../analysis-task', analysisTask.id ]">{{analysisTask.id}}</a></td>
+                <td jhiTranslate="{{'ctecApp.AnalysisType.' + analysisTask.analysisType}}">{{analysisTask.analysisType}}</td>
+                <td jhiTranslate="{{'ctecApp.Priority.' + analysisTask.priority}}">{{analysisTask.priority}}</td>
+                <td jhiTranslate="{{'ctecApp.AnalysisStatus.' + analysisTask.analysisStatus}}">{{analysisTask.analysisStatus}}</td>
+                <td jhiTranslate="{{'ctecApp.VideoType.' + analysisTask.videoType}}">{{analysisTask.videoType}}</td>
+                <td>{{analysisTask.createdAt | date:'medium'}}</td>
+                <td>{{analysisTask.executionAt | date:'medium'}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../analysis-task', analysisTask.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'analysis-task/'+ analysisTask.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'analysis-task/'+ analysisTask.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div *ngIf="analysisTasks && analysisTasks.length">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,142 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCameraLabel" jhiTranslate="ctecApp.camera.home.createOrEditLabel">Create or edit a Camera</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!camera.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="camera.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.name" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="camera.name" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.cameraID" for="field_cameraID">Camera ID</label>
+            <input type="text" class="form-control" name="cameraID" id="field_cameraID"
+                [(ngModel)]="camera.cameraID" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.cameraIP" for="field_cameraIP">Camera IP</label>
+            <input type="text" class="form-control" name="cameraIP" id="field_cameraIP"
+                [(ngModel)]="camera.cameraIP" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.belongServer" for="field_belongServer">Belong Server</label>
+            <input type="text" class="form-control" name="belongServer" id="field_belongServer"
+                [(ngModel)]="camera.belongServer" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.belongChannel" for="field_belongChannel">Belong Channel</label>
+            <input type="text" class="form-control" name="belongChannel" id="field_belongChannel"
+                [(ngModel)]="camera.belongChannel" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.collectStandards" for="field_collectStandards">Collect Standards</label>
+            <select class="form-control" name="collectStandards" [(ngModel)]="camera.collectStandards" id="field_collectStandards" >
+                <option value="NORMAL">{{'ctecApp.CollectStandards.NORMAL' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.deviceStatus" for="field_deviceStatus">Device Status</label>
+            <select class="form-control" name="deviceStatus" [(ngModel)]="camera.deviceStatus" id="field_deviceStatus" >
+                <option value="RUNNING">{{'ctecApp.DeviceStatus.RUNNING' | translate}}</option>
+                <option value="STOP">{{'ctecApp.DeviceStatus.STOP' | translate}}</option>
+                <option value="OVERHAULING">{{'ctecApp.DeviceStatus.OVERHAULING' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.fastRunWarn" for="field_fastRunWarn">Fast Run Warn</label>
+            <input type="checkbox" class="form-control" name="fastRunWarn" id="field_fastRunWarn"
+                [(ngModel)]="camera.fastRunWarn" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.peopleCountLimitWarn" for="field_peopleCountLimitWarn">People Count Limit Warn</label>
+            <input type="checkbox" class="form-control" name="peopleCountLimitWarn" id="field_peopleCountLimitWarn"
+                [(ngModel)]="camera.peopleCountLimitWarn" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.crowdsGatherWarn" for="field_crowdsGatherWarn">Crowds Gather Warn</label>
+            <input type="checkbox" class="form-control" name="crowdsGatherWarn" id="field_crowdsGatherWarn"
+                [(ngModel)]="camera.crowdsGatherWarn" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.vigorouslyWavedWarn" for="field_vigorouslyWavedWarn">Vigorously Waved Warn</label>
+            <input type="checkbox" class="form-control" name="vigorouslyWavedWarn" id="field_vigorouslyWavedWarn"
+                [(ngModel)]="camera.vigorouslyWavedWarn" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.fightWarn" for="field_fightWarn">Fight Warn</label>
+            <input type="checkbox" class="form-control" name="fightWarn" id="field_fightWarn"
+                [(ngModel)]="camera.fightWarn" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.abnormalActionWarn" for="field_abnormalActionWarn">Abnormal Action Warn</label>
+            <input type="checkbox" class="form-control" name="abnormalActionWarn" id="field_abnormalActionWarn"
+                [(ngModel)]="camera.abnormalActionWarn" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.fastRunWarnLimit" for="field_fastRunWarnLimit">Fast Run Warn Limit</label>
+            <input type="number" class="form-control" name="fastRunWarnLimit" id="field_fastRunWarnLimit"
+                [(ngModel)]="camera.fastRunWarnLimit" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.peopleCountWarnLimit" for="field_peopleCountWarnLimit">People Count Warn Limit</label>
+            <input type="number" class="form-control" name="peopleCountWarnLimit" id="field_peopleCountWarnLimit"
+                [(ngModel)]="camera.peopleCountWarnLimit" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.crowdsGatherWarnLimit" for="field_crowdsGatherWarnLimit">Crowds Gather Warn Limit</label>
+            <input type="number" class="form-control" name="crowdsGatherWarnLimit" id="field_crowdsGatherWarnLimit"
+                [(ngModel)]="camera.crowdsGatherWarnLimit" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.vigorouslyWavedWarnLimit" for="field_vigorouslyWavedWarnLimit">Vigorously Waved Warn Limit</label>
+            <input type="number" class="form-control" name="vigorouslyWavedWarnLimit" id="field_vigorouslyWavedWarnLimit"
+                [(ngModel)]="camera.vigorouslyWavedWarnLimit" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.fightWarnLimit" for="field_fightWarnLimit">Fight Warn Limit</label>
+            <input type="number" class="form-control" name="fightWarnLimit" id="field_fightWarnLimit"
+                [(ngModel)]="camera.fightWarnLimit" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.abnormalActionWarnLimit" for="field_abnormalActionWarnLimit">Abnormal Action Warn Limit</label>
+            <input type="number" class="form-control" name="abnormalActionWarnLimit" id="field_abnormalActionWarnLimit"
+                [(ngModel)]="camera.abnormalActionWarnLimit" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.filterType" for="field_filterType">Filter Type</label>
+            <select class="form-control" name="filterType" [(ngModel)]="camera.filterType" id="field_filterType" >
+                <option value="HAIRSTYLE">{{'ctecApp.FilterType.HAIRSTYLE' | translate}}</option>
+                <option value="SEX">{{'ctecApp.FilterType.SEX' | translate}}</option>
+                <option value="UPPERWEAR">{{'ctecApp.FilterType.UPPERWEAR' | translate}}</option>
+                <option value="UNDERWEAR">{{'ctecApp.FilterType.UNDERWEAR' | translate}}</option>
+                <option value="CARRY_THING">{{'ctecApp.FilterType.CARRY_THING' | translate}}</option>
+                <option value="SUNGLASS">{{'ctecApp.FilterType.SUNGLASS' | translate}}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.alarmRegion" for="field_alarmRegion">Alarm Region</label>
+            <select class="form-control" id="field_alarmRegion" name="alarmRegion" [(ngModel)]="camera.alarmRegion">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="alarmRegionOption.id === camera.alarmRegion?.id ? camera.alarmRegion : alarmRegionOption" *ngFor="let alarmRegionOption of alarmregions; trackBy: trackAlarmRegionById">{{alarmRegionOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

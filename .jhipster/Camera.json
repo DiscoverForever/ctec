@@ -1,0 +1,125 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "alarmRegion",
+            "otherEntityName": "alarmRegion",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "camera"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "javadoc": "摄像头名称",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cameraID",
+            "javadoc": "摄像头ID",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cameraIP",
+            "javadoc": "摄像头IP",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "belongServer",
+            "javadoc": "所属服务器",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "belongChannel",
+            "javadoc": "所属通道",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "collectStandards",
+            "javadoc": "采集标准",
+            "fieldType": "CollectStandards",
+            "fieldValues": "NORMAL"
+        },
+        {
+            "fieldName": "deviceStatus",
+            "javadoc": "设备状态",
+            "fieldType": "DeviceStatus",
+            "fieldValues": "RUNNING,STOP,OVERHAULING"
+        },
+        {
+            "fieldName": "fastRunWarn",
+            "javadoc": "快速运动预警",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "peopleCountLimitWarn",
+            "javadoc": "人数超限",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "crowdsGatherWarn",
+            "javadoc": "人群聚集",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "vigorouslyWavedWarn",
+            "javadoc": "剧烈挥手预警",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "fightWarn",
+            "javadoc": "打架预警",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "abnormalActionWarn",
+            "javadoc": "异常动作预警",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "fastRunWarnLimit",
+            "javadoc": "快速运动预警预警值",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "peopleCountWarnLimit",
+            "javadoc": "人数超限预警值",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "crowdsGatherWarnLimit",
+            "javadoc": "人群聚集预警值",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "vigorouslyWavedWarnLimit",
+            "javadoc": "剧烈挥手预警预警值",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "fightWarnLimit",
+            "javadoc": "打架预警预警值",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "abnormalActionWarnLimit",
+            "javadoc": "异常动作预警预警值",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "filterType",
+            "javadoc": "筛选",
+            "fieldType": "FilterType",
+            "fieldValues": "HAIRSTYLE,SEX,UPPERWEAR,UNDERWEAR,CARRY_THING,SUNGLASS"
+        }
+    ],
+    "changelogDate": "20180122070317",
+    "javadoc": "摄像头",
+    "entityTableName": "camera",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

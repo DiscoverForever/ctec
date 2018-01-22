@@ -1,0 +1,9 @@
+{
+    "ctecApp": {
+        "AnalysisStatus" : {
+            "null": "",
+            "ON_ANALYSIS": "ON_ANALYSIS",
+            "ON_PAUSE": "ON_PAUSE"
+        }
+    }
+}

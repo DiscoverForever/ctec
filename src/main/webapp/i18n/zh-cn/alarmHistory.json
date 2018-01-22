@@ -1,0 +1,25 @@
+{
+    "ctecApp": {
+        "alarmHistory" : {
+            "home": {
+                "title": "Alarm Histories",
+                "createLabel": "创建新 Alarm History",
+                "createOrEditLabel": "创建或编辑 Alarm History",
+                "search": "查找 Alarm History"
+            },
+            "created": "Alarm History {{ param }} 创建成功",
+            "updated": "Alarm History {{ param }} 更新成功",
+            "deleted": "Alarm History {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Alarm History {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Alarm History"
+            },
+            "image": "Image",
+            "alarmType": "Alarm Type",
+            "time": "Time",
+            "camera": "Camera"
+        }
+    }
+}

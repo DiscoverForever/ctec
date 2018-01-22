@@ -1,0 +1,45 @@
+
+<div *ngIf="alarmHistory">
+    <h2><span jhiTranslate="ctecApp.alarmHistory.detail.title">Alarm History</span> {{alarmHistory.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ctecApp.alarmHistory.image">Image</span></dt>
+        <dd>
+            <div *ngIf="alarmHistory.image">
+                <a (click)="openFile(alarmHistory.imageContentType, alarmHistory.image)">
+                    <img [src]="'data:' + alarmHistory.imageContentType + ';base64,' + alarmHistory.image" style="max-width: 100%;" alt="alarmHistory image"/>
+                </a>
+                {{alarmHistory.imageContentType}}, {{byteSize(alarmHistory.image)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.alarmHistory.alarmType">Alarm Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ctecApp.AlarmType.' + alarmHistory.alarmType}}">{{alarmHistory.alarmType}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.alarmHistory.time">Time</span></dt>
+        <dd>
+            <span>{{alarmHistory.time | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.alarmHistory.camera">Camera</span></dt>
+        <dd>
+            <div *ngIf="alarmHistory.camera">
+                <a [routerLink]="['/camera', alarmHistory.camera?.id]">{{alarmHistory.camera?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'alarm-history/'+ alarmHistory.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

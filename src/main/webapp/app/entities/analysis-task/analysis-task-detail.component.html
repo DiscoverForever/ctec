@@ -1,0 +1,46 @@
+
+<div *ngIf="analysisTask">
+    <h2><span jhiTranslate="ctecApp.analysisTask.detail.title">Analysis Task</span> {{analysisTask.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ctecApp.analysisTask.analysisType">Analysis Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ctecApp.AnalysisType.' + analysisTask.analysisType}}">{{analysisTask.analysisType}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.analysisTask.priority">Priority</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ctecApp.Priority.' + analysisTask.priority}}">{{analysisTask.priority}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.analysisTask.analysisStatus">Analysis Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ctecApp.AnalysisStatus.' + analysisTask.analysisStatus}}">{{analysisTask.analysisStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.analysisTask.videoType">Video Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ctecApp.VideoType.' + analysisTask.videoType}}">{{analysisTask.videoType}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.analysisTask.createdAt">Created At</span></dt>
+        <dd>
+            <span>{{analysisTask.createdAt | date:'medium'}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.analysisTask.executionAt">Execution At</span></dt>
+        <dd>
+            <span>{{analysisTask.executionAt | date:'medium'}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'analysis-task/'+ analysisTask.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

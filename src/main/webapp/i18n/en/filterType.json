@@ -1,0 +1,13 @@
+{
+    "ctecApp": {
+        "FilterType" : {
+            "null": "",
+            "HAIRSTYLE": "HAIRSTYLE",
+            "SEX": "SEX",
+            "UPPERWEAR": "UPPERWEAR",
+            "UNDERWEAR": "UNDERWEAR",
+            "CARRY_THING": "CARRY_THING",
+            "SUNGLASS": "SUNGLASS"
+        }
+    }
+}

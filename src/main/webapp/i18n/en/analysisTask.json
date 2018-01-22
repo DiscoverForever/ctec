@@ -1,0 +1,27 @@
+{
+    "ctecApp": {
+        "analysisTask" : {
+            "home": {
+                "title": "Analysis Tasks",
+                "createLabel": "Create a new Analysis Task",
+                "createOrEditLabel": "Create or edit a Analysis Task",
+                "search": "Search for Analysis Task"
+            },
+            "created": "A new Analysis Task is created with identifier {{ param }}",
+            "updated": "A Analysis Task is updated with identifier {{ param }}",
+            "deleted": "A Analysis Task is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Analysis Task {{ id }}?"
+            },
+            "detail": {
+                "title": "Analysis Task"
+            },
+            "analysisType": "Analysis Type",
+            "priority": "Priority",
+            "analysisStatus": "Analysis Status",
+            "videoType": "Video Type",
+            "createdAt": "Created At",
+            "executionAt": "Execution At"
+        }
+    }
+}

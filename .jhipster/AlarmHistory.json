@@ -1,0 +1,39 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "camera",
+            "otherEntityName": "camera",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "alarmHistory"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "image",
+            "javadoc": "报警截图",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "image"
+        },
+        {
+            "fieldName": "alarmType",
+            "javadoc": "报警类型",
+            "fieldType": "AlarmType",
+            "fieldValues": "FAST_RUN_WARN,PEOPLE_COUNT_LIMIT_WARN,CROWDS_GATHER_WARN,VIGOROUSLY_WAVED_WARN,FIGHT_WARN,ABNORMAL_ACTION_WARN"
+        },
+        {
+            "fieldName": "time",
+            "javadoc": "报警时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20180122070319",
+    "javadoc": "历史警报",
+    "entityTableName": "alarm_history",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

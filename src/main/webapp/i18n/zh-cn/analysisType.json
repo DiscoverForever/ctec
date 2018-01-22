@@ -1,0 +1,10 @@
+{
+    "ctecApp": {
+        "AnalysisType" : {
+            "null": "",
+            "BEHAVIOR": "BEHAVIOR",
+            "STRUCTURED": "STRUCTURED",
+            "PERIMETER_PROTECT": "PERIMETER_PROTECT"
+        }
+    }
+}

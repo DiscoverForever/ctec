@@ -1,0 +1,27 @@
+{
+    "ctecApp": {
+        "analysisTask" : {
+            "home": {
+                "title": "Analysis Tasks",
+                "createLabel": "创建新 Analysis Task",
+                "createOrEditLabel": "创建或编辑 Analysis Task",
+                "search": "查找 Analysis Task"
+            },
+            "created": "Analysis Task {{ param }} 创建成功",
+            "updated": "Analysis Task {{ param }} 更新成功",
+            "deleted": "Analysis Task {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Analysis Task {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Analysis Task"
+            },
+            "analysisType": "Analysis Type",
+            "priority": "Priority",
+            "analysisStatus": "Analysis Status",
+            "videoType": "Video Type",
+            "createdAt": "Created At",
+            "executionAt": "Execution At"
+        }
+    }
+}

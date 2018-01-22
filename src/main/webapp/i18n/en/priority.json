@@ -1,0 +1,10 @@
+{
+    "ctecApp": {
+        "Priority" : {
+            "null": "",
+            "HIGHT": "HIGHT",
+            "MIDDLE": "MIDDLE",
+            "LOW": "LOW"
+        }
+    }
+}

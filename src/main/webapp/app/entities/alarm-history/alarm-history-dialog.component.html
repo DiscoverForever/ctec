@@ -1,0 +1,67 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAlarmHistoryLabel" jhiTranslate="ctecApp.alarmHistory.home.createOrEditLabel">Create or edit a Alarm History</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!alarmHistory.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="alarmHistory.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmHistory.image" for="field_image">Image</label>
+            <div>
+                <img [src]="'data:' + alarmHistory.imageContentType + ';base64,' + alarmHistory.image" style="max-height: 100px;" *ngIf="alarmHistory.image" alt="alarmHistory image"/>
+                <div *ngIf="alarmHistory.image" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{alarmHistory.imageContentType}}, {{byteSize(alarmHistory.image)}}</span>
+                    <button type="button" (click)="clearInputImage('image', 'imageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_image" (change)="setFileData($event, alarmHistory, 'image', true)" accept="image/*" jhiTranslate="entity.action.addimage"/>
+            </div>
+            <input type="hidden" class="form-control" name="image" id="field_image"
+                [(ngModel)]="alarmHistory.image" />
+            <input type="hidden" class="form-control" name="imageContentType" id="field_imageContentType"
+                [(ngModel)]="alarmHistory.imageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmHistory.alarmType" for="field_alarmType">Alarm Type</label>
+            <select class="form-control" name="alarmType" [(ngModel)]="alarmHistory.alarmType" id="field_alarmType" >
+                <option value="FAST_RUN_WARN">{{'ctecApp.AlarmType.FAST_RUN_WARN' | translate}}</option>
+                <option value="PEOPLE_COUNT_LIMIT_WARN">{{'ctecApp.AlarmType.PEOPLE_COUNT_LIMIT_WARN' | translate}}</option>
+                <option value="CROWDS_GATHER_WARN">{{'ctecApp.AlarmType.CROWDS_GATHER_WARN' | translate}}</option>
+                <option value="VIGOROUSLY_WAVED_WARN">{{'ctecApp.AlarmType.VIGOROUSLY_WAVED_WARN' | translate}}</option>
+                <option value="FIGHT_WARN">{{'ctecApp.AlarmType.FIGHT_WARN' | translate}}</option>
+                <option value="ABNORMAL_ACTION_WARN">{{'ctecApp.AlarmType.ABNORMAL_ACTION_WARN' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmHistory.time" for="field_time">Time</label>
+            <div class="d-flex">
+                <input id="field_time" type="datetime-local" class="form-control" name="time" [(ngModel)]="alarmHistory.time"
+                />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.alarmHistory.camera" for="field_camera">Camera</label>
+            <select class="form-control" id="field_camera" name="camera" [(ngModel)]="alarmHistory.camera">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="cameraOption.id === alarmHistory.camera?.id ? alarmHistory.camera : cameraOption" *ngFor="let cameraOption of cameras; trackBy: trackCameraById">{{cameraOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

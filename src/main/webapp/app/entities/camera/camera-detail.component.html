@@ -1,0 +1,108 @@
+
+<div *ngIf="camera">
+    <h2><span jhiTranslate="ctecApp.camera.detail.title">Camera</span> {{camera.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ctecApp.camera.name">Name</span></dt>
+        <dd>
+            <span>{{camera.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.cameraID">Camera ID</span></dt>
+        <dd>
+            <span>{{camera.cameraID}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.cameraIP">Camera IP</span></dt>
+        <dd>
+            <span>{{camera.cameraIP}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.belongServer">Belong Server</span></dt>
+        <dd>
+            <span>{{camera.belongServer}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.belongChannel">Belong Channel</span></dt>
+        <dd>
+            <span>{{camera.belongChannel}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.collectStandards">Collect Standards</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ctecApp.CollectStandards.' + camera.collectStandards}}">{{camera.collectStandards}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.deviceStatus">Device Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ctecApp.DeviceStatus.' + camera.deviceStatus}}">{{camera.deviceStatus}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.fastRunWarn">Fast Run Warn</span></dt>
+        <dd>
+            <span>{{camera.fastRunWarn}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.peopleCountLimitWarn">People Count Limit Warn</span></dt>
+        <dd>
+            <span>{{camera.peopleCountLimitWarn}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.crowdsGatherWarn">Crowds Gather Warn</span></dt>
+        <dd>
+            <span>{{camera.crowdsGatherWarn}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.vigorouslyWavedWarn">Vigorously Waved Warn</span></dt>
+        <dd>
+            <span>{{camera.vigorouslyWavedWarn}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.fightWarn">Fight Warn</span></dt>
+        <dd>
+            <span>{{camera.fightWarn}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.abnormalActionWarn">Abnormal Action Warn</span></dt>
+        <dd>
+            <span>{{camera.abnormalActionWarn}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.fastRunWarnLimit">Fast Run Warn Limit</span></dt>
+        <dd>
+            <span>{{camera.fastRunWarnLimit}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.peopleCountWarnLimit">People Count Warn Limit</span></dt>
+        <dd>
+            <span>{{camera.peopleCountWarnLimit}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.crowdsGatherWarnLimit">Crowds Gather Warn Limit</span></dt>
+        <dd>
+            <span>{{camera.crowdsGatherWarnLimit}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.vigorouslyWavedWarnLimit">Vigorously Waved Warn Limit</span></dt>
+        <dd>
+            <span>{{camera.vigorouslyWavedWarnLimit}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.fightWarnLimit">Fight Warn Limit</span></dt>
+        <dd>
+            <span>{{camera.fightWarnLimit}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.abnormalActionWarnLimit">Abnormal Action Warn Limit</span></dt>
+        <dd>
+            <span>{{camera.abnormalActionWarnLimit}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.filterType">Filter Type</span></dt>
+        <dd>
+            <span jhiTranslate="{{'ctecApp.FilterType.' + camera.filterType}}">{{camera.filterType}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.camera.alarmRegion">Alarm Region</span></dt>
+        <dd>
+            <div *ngIf="camera.alarmRegion">
+                <a [routerLink]="['/alarm-region', camera.alarmRegion?.id]">{{camera.alarmRegion?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'camera/'+ camera.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

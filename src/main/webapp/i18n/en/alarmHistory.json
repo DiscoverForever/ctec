@@ -1,0 +1,25 @@
+{
+    "ctecApp": {
+        "alarmHistory" : {
+            "home": {
+                "title": "Alarm Histories",
+                "createLabel": "Create a new Alarm History",
+                "createOrEditLabel": "Create or edit a Alarm History",
+                "search": "Search for Alarm History"
+            },
+            "created": "A new Alarm History is created with identifier {{ param }}",
+            "updated": "A Alarm History is updated with identifier {{ param }}",
+            "deleted": "A Alarm History is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Alarm History {{ id }}?"
+            },
+            "detail": {
+                "title": "Alarm History"
+            },
+            "image": "Image",
+            "alarmType": "Alarm Type",
+            "time": "Time",
+            "camera": "Camera"
+        }
+    }
+}

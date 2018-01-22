@@ -1,0 +1,29 @@
+{
+    "ctecApp": {
+        "alarmRegion" : {
+            "home": {
+                "title": "Alarm Regions",
+                "createLabel": "创建新 Alarm Region",
+                "createOrEditLabel": "创建或编辑 Alarm Region",
+                "search": "查找 Alarm Region"
+            },
+            "created": "Alarm Region {{ param }} 创建成功",
+            "updated": "Alarm Region {{ param }} 更新成功",
+            "deleted": "Alarm Region {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Alarm Region {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Alarm Region"
+            },
+            "leftUpX": "Left Up X",
+            "leftUpY": "Left Up Y",
+            "rightUpX": "Right Up X",
+            "rightUpY": "Right Up Y",
+            "leftDownX": "Left Down X",
+            "leftDownY": "Left Down Y",
+            "rightDownX": "Right Down X",
+            "rightDownY": "Right Down Y"
+        }
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "analysisType",
+            "javadoc": "分析类型",
+            "fieldType": "AnalysisType",
+            "fieldValues": "BEHAVIOR,STRUCTURED,PERIMETER_PROTECT"
+        },
+        {
+            "fieldName": "priority",
+            "javadoc": "优先级",
+            "fieldType": "Priority",
+            "fieldValues": "HIGHT,MIDDLE,LOW"
+        },
+        {
+            "fieldName": "analysisStatus",
+            "javadoc": "分析状态",
+            "fieldType": "AnalysisStatus",
+            "fieldValues": "ON_ANALYSIS,ON_PAUSE"
+        },
+        {
+            "fieldName": "videoType",
+            "javadoc": "视频类型",
+            "fieldType": "VideoType",
+            "fieldValues": "LOCAL,REALTIME"
+        },
+        {
+            "fieldName": "createdAt",
+            "javadoc": "创建时间",
+            "fieldType": "ZonedDateTime"
+        },
+        {
+            "fieldName": "executionAt",
+            "javadoc": "执行时间",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "changelogDate": "20180122070320",
+    "javadoc": "分析任务",
+    "entityTableName": "analysis_task",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

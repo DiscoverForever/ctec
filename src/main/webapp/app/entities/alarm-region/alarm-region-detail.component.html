@@ -1,0 +1,54 @@
+
+<div *ngIf="alarmRegion">
+    <h2><span jhiTranslate="ctecApp.alarmRegion.detail.title">Alarm Region</span> {{alarmRegion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ctecApp.alarmRegion.leftUpX">Left Up X</span></dt>
+        <dd>
+            <span>{{alarmRegion.leftUpX}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.alarmRegion.leftUpY">Left Up Y</span></dt>
+        <dd>
+            <span>{{alarmRegion.leftUpY}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.alarmRegion.rightUpX">Right Up X</span></dt>
+        <dd>
+            <span>{{alarmRegion.rightUpX}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.alarmRegion.rightUpY">Right Up Y</span></dt>
+        <dd>
+            <span>{{alarmRegion.rightUpY}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.alarmRegion.leftDownX">Left Down X</span></dt>
+        <dd>
+            <span>{{alarmRegion.leftDownX}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.alarmRegion.leftDownY">Left Down Y</span></dt>
+        <dd>
+            <span>{{alarmRegion.leftDownY}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.alarmRegion.rightDownX">Right Down X</span></dt>
+        <dd>
+            <span>{{alarmRegion.rightDownX}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.alarmRegion.rightDownY">Right Down Y</span></dt>
+        <dd>
+            <span>{{alarmRegion.rightDownY}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'alarm-region/'+ alarmRegion.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

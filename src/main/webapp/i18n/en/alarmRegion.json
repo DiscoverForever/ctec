@@ -1,0 +1,29 @@
+{
+    "ctecApp": {
+        "alarmRegion" : {
+            "home": {
+                "title": "Alarm Regions",
+                "createLabel": "Create a new Alarm Region",
+                "createOrEditLabel": "Create or edit a Alarm Region",
+                "search": "Search for Alarm Region"
+            },
+            "created": "A new Alarm Region is created with identifier {{ param }}",
+            "updated": "A Alarm Region is updated with identifier {{ param }}",
+            "deleted": "A Alarm Region is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Alarm Region {{ id }}?"
+            },
+            "detail": {
+                "title": "Alarm Region"
+            },
+            "leftUpX": "Left Up X",
+            "leftUpY": "Left Up Y",
+            "rightUpX": "Right Up X",
+            "rightUpY": "Right Up Y",
+            "leftDownX": "Left Down X",
+            "leftDownY": "Left Down Y",
+            "rightDownX": "Right Down X",
+            "rightDownY": "Right Down Y"
+        }
+    }
+}

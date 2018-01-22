@@ -1,0 +1,151 @@
+/**摄像头*/
+entity Camera {
+/**摄像头名称*/
+name String,
+/**摄像头ID*/
+cameraID String,
+/**摄像头IP*/
+cameraIP String,
+/**所属服务器*/
+belongServer String,
+/**所属通道*/
+belongChannel String,
+/**采集标准*/
+collectStandards CollectStandards,
+/**设备状态*/
+deviceStatus DeviceStatus,
+/**快速运动预警*/
+fastRunWarn Boolean,
+/**人数超限*/
+peopleCountLimitWarn Boolean,
+/**人群聚集*/
+crowdsGatherWarn Boolean,
+/**剧烈挥手预警*/
+vigorouslyWavedWarn Boolean,
+/**打架预警*/
+fightWarn Boolean,
+/**异常动作预警*/
+abnormalActionWarn Boolean,
+
+/**快速运动预警预警值*/
+fastRunWarnLimit Integer,
+/**人数超限预警值*/
+peopleCountWarnLimit Integer,
+/**人群聚集预警值*/
+crowdsGatherWarnLimit Integer,
+/**剧烈挥手预警预警值*/
+vigorouslyWavedWarnLimit Integer,
+/**打架预警预警值*/
+fightWarnLimit Integer,
+/**异常动作预警预警值*/
+abnormalActionWarnLimit Integer
+
+/**筛选*/
+filterType FilterType
+}
+
+/**信息采集类型*/
+enum CollectStandards {
+  NORMAL
+}
+/**设备状态*/
+enum DeviceStatus {
+  RUNNING,
+  STOP,
+  OVERHAULING
+}
+
+/**过滤*/
+enum FilterType {
+  HAIRSTYLE,
+  SEX,
+  UPPERWEAR,
+  UNDERWEAR,
+  CARRY_THING,
+  SUNGLASS
+}
+/**报警区域*/
+entity AlarmRegion {
+  /**左上X*/
+  leftUpX Float,
+  /**左上Y*/
+  leftUpY Float,
+  /**右上X*/
+  rightUpX Float,
+  /**右上Y*/
+  rightUpY Float,
+  /**左下X*/
+  leftDownX Float,
+  /**左下Y*/
+  leftDownY Float,
+  /**右下X*/
+  rightDownX Float,
+  /**右下Y*/
+  rightDownY Float
+
+}
+
+/**历史警报*/
+entity AlarmHistory {
+  /**报警截图*/
+  image ImageBlob,
+  /**报警类型*/
+  alarmType AlarmType,
+  /**报警时间*/
+  time ZonedDateTime
+}
+/**报警类型*/
+enum AlarmType {
+FAST_RUN_WARN,
+PEOPLE_COUNT_LIMIT_WARN,
+CROWDS_GATHER_WARN,
+VIGOROUSLY_WAVED_WARN,
+FIGHT_WARN,
+ABNORMAL_ACTION_WARN
+}
+/**分析任务*/
+entity AnalysisTask {
+  /**分析类型*/
+  analysisType AnalysisType,
+  /**优先级*/
+  priority Priority,
+  /**分析状态*/
+  analysisStatus AnalysisStatus,
+  /**视频类型*/
+  videoType VideoType,
+  /**创建时间*/
+  createdAt ZonedDateTime,
+  /**执行时间*/
+  executionAt ZonedDateTime
+}
+/**优先级*/
+enum Priority {
+  HIGHT,
+  MIDDLE,
+  LOW
+}
+/**分析类型*/
+enum AnalysisType {
+BEHAVIOR,
+STRUCTURED,
+PERIMETER_PROTECT
+}
+/**分析状态*/
+enum AnalysisStatus {
+  ON_ANALYSIS,
+  ON_PAUSE
+}
+/**视频类型*/
+enum VideoType {
+  LOCAL,
+  REALTIME
+}
+relationship OneToOne {
+	Camera{alarmRegion} to AlarmRegion
+} 
+
+relationship OneToOne {
+	AlarmHistory{camera} to Camera
+}
+
+paginate * with pagination

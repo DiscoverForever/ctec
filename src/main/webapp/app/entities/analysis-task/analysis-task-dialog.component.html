@@ -1,0 +1,69 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myAnalysisTaskLabel" jhiTranslate="ctecApp.analysisTask.home.createOrEditLabel">Create or edit a Analysis Task</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!analysisTask.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="analysisTask.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.analysisTask.analysisType" for="field_analysisType">Analysis Type</label>
+            <select class="form-control" name="analysisType" [(ngModel)]="analysisTask.analysisType" id="field_analysisType" >
+                <option value="BEHAVIOR">{{'ctecApp.AnalysisType.BEHAVIOR' | translate}}</option>
+                <option value="STRUCTURED">{{'ctecApp.AnalysisType.STRUCTURED' | translate}}</option>
+                <option value="PERIMETER_PROTECT">{{'ctecApp.AnalysisType.PERIMETER_PROTECT' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.analysisTask.priority" for="field_priority">Priority</label>
+            <select class="form-control" name="priority" [(ngModel)]="analysisTask.priority" id="field_priority" >
+                <option value="HIGHT">{{'ctecApp.Priority.HIGHT' | translate}}</option>
+                <option value="MIDDLE">{{'ctecApp.Priority.MIDDLE' | translate}}</option>
+                <option value="LOW">{{'ctecApp.Priority.LOW' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.analysisTask.analysisStatus" for="field_analysisStatus">Analysis Status</label>
+            <select class="form-control" name="analysisStatus" [(ngModel)]="analysisTask.analysisStatus" id="field_analysisStatus" >
+                <option value="ON_ANALYSIS">{{'ctecApp.AnalysisStatus.ON_ANALYSIS' | translate}}</option>
+                <option value="ON_PAUSE">{{'ctecApp.AnalysisStatus.ON_PAUSE' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.analysisTask.videoType" for="field_videoType">Video Type</label>
+            <select class="form-control" name="videoType" [(ngModel)]="analysisTask.videoType" id="field_videoType" >
+                <option value="LOCAL">{{'ctecApp.VideoType.LOCAL' | translate}}</option>
+                <option value="REALTIME">{{'ctecApp.VideoType.REALTIME' | translate}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.analysisTask.createdAt" for="field_createdAt">Created At</label>
+            <div class="d-flex">
+                <input id="field_createdAt" type="datetime-local" class="form-control" name="createdAt" [(ngModel)]="analysisTask.createdAt"
+                />
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.analysisTask.executionAt" for="field_executionAt">Execution At</label>
+            <div class="d-flex">
+                <input id="field_executionAt" type="datetime-local" class="form-control" name="executionAt" [(ngModel)]="analysisTask.executionAt"
+                />
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
