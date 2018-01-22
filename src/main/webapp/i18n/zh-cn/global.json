@@ -7,10 +7,10 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "数据",
-                "camera": "Camera",
-                "alarmRegion": "Alarm Region",
-                "alarmHistory": "Alarm History",
-                "analysisTask": "Analysis Task",
+                "camera": "摄像头",
+                "alarmRegion": "警报区域",
+                "alarmHistory": "报警历史",
+                "analysisTask": "分析任务",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
