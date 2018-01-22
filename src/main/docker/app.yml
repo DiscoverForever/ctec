@@ -1,0 +1,19 @@
+version: '2'
+services:
+    ctec-app:
+        image: ctec
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://ctec-mysql:3306/ctec?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=ctec-elasticsearch:9300
+        ports:
+            - 8080:8080
+    ctec-mysql:
+        extends:
+            file: mysql.yml
+            service: ctec-mysql
+    ctec-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: ctec-elasticsearch
