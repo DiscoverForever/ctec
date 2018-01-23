@@ -38,6 +38,7 @@
             <th jhiSortBy="leftDownY"><span jhiTranslate="ctecApp.alarmRegion.leftDownY">Left Down Y</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="rightDownX"><span jhiTranslate="ctecApp.alarmRegion.rightDownX">Right Down X</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="rightDownY"><span jhiTranslate="ctecApp.alarmRegion.rightDownY">Right Down Y</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="camera.id"><span jhiTranslate="ctecApp.alarmRegion.camera">Camera</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -52,6 +53,11 @@
                 <td>{{alarmRegion.leftDownY}}</td>
                 <td>{{alarmRegion.rightDownX}}</td>
                 <td>{{alarmRegion.rightDownY}}</td>
+                <td>
+                    <div *ngIf="alarmRegion.camera">
+                        <a [routerLink]="['../camera', alarmRegion.camera?.id ]" >{{alarmRegion.camera?.id}}</a>
+                    </div>
+                </td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

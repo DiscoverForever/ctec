@@ -68,7 +68,7 @@ class CameraGatlingTest extends Simulation {
             .exec(http("Create new camera")
             .post("/api/cameras")
             .headers(headers_http_authenticated)
-            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "cameraID":"SAMPLE_TEXT", "cameraIP":"SAMPLE_TEXT", "belongServer":"SAMPLE_TEXT", "belongChannel":"SAMPLE_TEXT", "collectStandards":null, "deviceStatus":null, "fastRunWarn":null, "peopleCountLimitWarn":null, "crowdsGatherWarn":null, "vigorouslyWavedWarn":null, "fightWarn":null, "abnormalActionWarn":null, "fastRunWarnLimit":"0", "peopleCountWarnLimit":"0", "crowdsGatherWarnLimit":"0", "vigorouslyWavedWarnLimit":"0", "fightWarnLimit":"0", "abnormalActionWarnLimit":"0", "filterType":null}""")).asJSON
+            .body(StringBody("""{"id":null, "name":"SAMPLE_TEXT", "cameraID":"SAMPLE_TEXT", "cameraIP":"SAMPLE_TEXT", "belongServer":"SAMPLE_TEXT", "belongChannel":"SAMPLE_TEXT", "collectStandards":"SAMPLE_TEXT", "deviceStatus":null, "fastRunWarn":null, "peopleCountLimitWarn":null, "crowdsGatherWarn":null, "vigorouslyWavedWarn":null, "fightWarn":null, "abnormalActionWarn":null, "fastRunWarnLimit":"0", "peopleCountWarnLimit":"0", "crowdsGatherWarnLimit":"0", "vigorouslyWavedWarnLimit":"0", "fightWarnLimit":"0", "abnormalActionWarnLimit":"0", "filterType":null}""")).asJSON
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_camera_url"))).exitHereIfFailed
             .pause(10)

@@ -4,13 +4,11 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
+import { JhiEventManager } from 'ng-jhipster';
 
 import { Camera } from './camera.model';
 import { CameraPopupService } from './camera-popup.service';
 import { CameraService } from './camera.service';
-import { AlarmRegion, AlarmRegionService } from '../alarm-region';
-import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-camera-dialog',
@@ -21,32 +19,15 @@ export class CameraDialogComponent implements OnInit {
     camera: Camera;
     isSaving: boolean;
 
-    alarmregions: AlarmRegion[];
-
     constructor(
         public activeModal: NgbActiveModal,
-        private jhiAlertService: JhiAlertService,
         private cameraService: CameraService,
-        private alarmRegionService: AlarmRegionService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
-        this.alarmRegionService
-            .query({filter: 'camera-is-null'})
-            .subscribe((res: ResponseWrapper) => {
-                if (!this.camera.alarmRegion || !this.camera.alarmRegion.id) {
-                    this.alarmregions = res.json;
-                } else {
-                    this.alarmRegionService
-                        .find(this.camera.alarmRegion.id)
-                        .subscribe((subRes: AlarmRegion) => {
-                            this.alarmregions = [subRes].concat(res.json);
-                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
-                }
-            }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -77,14 +58,6 @@ export class CameraDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
-    }
-
-    private onError(error: any) {
-        this.jhiAlertService.error(error.message, null, null);
-    }
-
-    trackAlarmRegionById(index: number, item: AlarmRegion) {
-        return item.id;
     }
 }
 

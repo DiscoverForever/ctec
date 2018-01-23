@@ -4,11 +4,13 @@ import { Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiEventManager } from 'ng-jhipster';
+import { JhiEventManager, JhiAlertService } from 'ng-jhipster';
 
 import { AlarmRegion } from './alarm-region.model';
 import { AlarmRegionPopupService } from './alarm-region-popup.service';
 import { AlarmRegionService } from './alarm-region.service';
+import { Camera, CameraService } from '../camera';
+import { ResponseWrapper } from '../../shared';
 
 @Component({
     selector: 'jhi-alarm-region-dialog',
@@ -19,15 +21,21 @@ export class AlarmRegionDialogComponent implements OnInit {
     alarmRegion: AlarmRegion;
     isSaving: boolean;
 
+    cameras: Camera[];
+
     constructor(
         public activeModal: NgbActiveModal,
+        private jhiAlertService: JhiAlertService,
         private alarmRegionService: AlarmRegionService,
+        private cameraService: CameraService,
         private eventManager: JhiEventManager
     ) {
     }
 
     ngOnInit() {
         this.isSaving = false;
+        this.cameraService.query()
+            .subscribe((res: ResponseWrapper) => { this.cameras = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     clear() {
@@ -58,6 +66,14 @@ export class AlarmRegionDialogComponent implements OnInit {
 
     private onSaveError() {
         this.isSaving = false;
+    }
+
+    private onError(error: any) {
+        this.jhiAlertService.error(error.message, null, null);
+    }
+
+    trackCameraById(index: number, item: Camera) {
+        return item.id;
     }
 }
 

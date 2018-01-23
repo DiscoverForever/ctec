@@ -50,7 +50,7 @@
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="ctecApp.alarmHistory.camera" for="field_camera">Camera</label>
-            <select class="form-control" id="field_camera" name="camera" [(ngModel)]="alarmHistory.camera">
+            <select class="form-control" id="field_camera" name="camera" [(ngModel)]="alarmHistory.camera" >
                 <option [ngValue]="null"></option>
                 <option [ngValue]="cameraOption.id === alarmHistory.camera?.id ? alarmHistory.camera : cameraOption" *ngFor="let cameraOption of cameras; trackBy: trackCameraById">{{cameraOption.id}}</option>
             </select>

@@ -1,9 +1,5 @@
 import { BaseEntity } from './../../shared';
 
-export const enum CollectStandards {
-    'NORMAL'
-}
-
 export const enum DeviceStatus {
     'RUNNING',
     'STOP',
@@ -27,7 +23,7 @@ export class Camera implements BaseEntity {
         public cameraIP?: string,
         public belongServer?: string,
         public belongChannel?: string,
-        public collectStandards?: CollectStandards,
+        public collectStandards?: string,
         public deviceStatus?: DeviceStatus,
         public fastRunWarn?: boolean,
         public peopleCountLimitWarn?: boolean,
@@ -42,7 +38,8 @@ export class Camera implements BaseEntity {
         public fightWarnLimit?: number,
         public abnormalActionWarnLimit?: number,
         public filterType?: FilterType,
-        public alarmRegion?: BaseEntity,
+        public alarmHistories?: BaseEntity[],
+        public alarmRegions?: BaseEntity[],
     ) {
         this.fastRunWarn = false;
         this.peopleCountLimitWarn = false;

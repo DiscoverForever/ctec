@@ -1,5 +1,6 @@
 package com.cetc.cctv.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -7,9 +8,9 @@ import javax.persistence.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
-
-import com.cetc.cctv.domain.enumeration.CollectStandards;
 
 import com.cetc.cctv.domain.enumeration.DeviceStatus;
 
@@ -69,9 +70,8 @@ public class Camera implements Serializable {
      * 采集标准
      */
     @ApiModelProperty(value = "采集标准")
-    @Enumerated(EnumType.STRING)
     @Column(name = "collect_standards")
-    private CollectStandards collectStandards;
+    private String collectStandards;
 
     /**
      * 设备状态
@@ -173,9 +173,13 @@ public class Camera implements Serializable {
     @Column(name = "filter_type")
     private FilterType filterType;
 
-    @OneToOne
-    @JoinColumn(unique = true)
-    private AlarmRegion alarmRegion;
+    @OneToMany(mappedBy = "camera")
+    @JsonIgnore
+    private Set<AlarmHistory> alarmHistories = new HashSet<>();
+
+    @OneToMany(mappedBy = "camera")
+    @JsonIgnore
+    private Set<AlarmRegion> alarmRegions = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -251,16 +255,16 @@ public class Camera implements Serializable {
         this.belongChannel = belongChannel;
     }
 
-    public CollectStandards getCollectStandards() {
+    public String getCollectStandards() {
         return collectStandards;
     }
 
-    public Camera collectStandards(CollectStandards collectStandards) {
+    public Camera collectStandards(String collectStandards) {
         this.collectStandards = collectStandards;
         return this;
     }
 
-    public void setCollectStandards(CollectStandards collectStandards) {
+    public void setCollectStandards(String collectStandards) {
         this.collectStandards = collectStandards;
     }
 
@@ -446,17 +450,54 @@ public class Camera implements Serializable {
         this.filterType = filterType;
     }
 
-    public AlarmRegion getAlarmRegion() {
-        return alarmRegion;
+    public Set<AlarmHistory> getAlarmHistories() {
+        return alarmHistories;
     }
 
-    public Camera alarmRegion(AlarmRegion alarmRegion) {
-        this.alarmRegion = alarmRegion;
+    public Camera alarmHistories(Set<AlarmHistory> alarmHistories) {
+        this.alarmHistories = alarmHistories;
         return this;
     }
 
-    public void setAlarmRegion(AlarmRegion alarmRegion) {
-        this.alarmRegion = alarmRegion;
+    public Camera addAlarmHistory(AlarmHistory alarmHistory) {
+        this.alarmHistories.add(alarmHistory);
+        alarmHistory.setCamera(this);
+        return this;
+    }
+
+    public Camera removeAlarmHistory(AlarmHistory alarmHistory) {
+        this.alarmHistories.remove(alarmHistory);
+        alarmHistory.setCamera(null);
+        return this;
+    }
+
+    public void setAlarmHistories(Set<AlarmHistory> alarmHistories) {
+        this.alarmHistories = alarmHistories;
+    }
+
+    public Set<AlarmRegion> getAlarmRegions() {
+        return alarmRegions;
+    }
+
+    public Camera alarmRegions(Set<AlarmRegion> alarmRegions) {
+        this.alarmRegions = alarmRegions;
+        return this;
+    }
+
+    public Camera addAlarmRegion(AlarmRegion alarmRegion) {
+        this.alarmRegions.add(alarmRegion);
+        alarmRegion.setCamera(this);
+        return this;
+    }
+
+    public Camera removeAlarmRegion(AlarmRegion alarmRegion) {
+        this.alarmRegions.remove(alarmRegion);
+        alarmRegion.setCamera(null);
+        return this;
+    }
+
+    public void setAlarmRegions(Set<AlarmRegion> alarmRegions) {
+        this.alarmRegions = alarmRegions;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

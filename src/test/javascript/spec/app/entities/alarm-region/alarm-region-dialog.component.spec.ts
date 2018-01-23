@@ -8,6 +8,7 @@ import { CtecTestModule } from '../../../test.module';
 import { AlarmRegionDialogComponent } from '../../../../../../main/webapp/app/entities/alarm-region/alarm-region-dialog.component';
 import { AlarmRegionService } from '../../../../../../main/webapp/app/entities/alarm-region/alarm-region.service';
 import { AlarmRegion } from '../../../../../../main/webapp/app/entities/alarm-region/alarm-region.model';
+import { CameraService } from '../../../../../../main/webapp/app/entities/camera';
 
 describe('Component Tests', () => {
 
@@ -23,6 +24,7 @@ describe('Component Tests', () => {
                 imports: [CtecTestModule],
                 declarations: [AlarmRegionDialogComponent],
                 providers: [
+                    CameraService,
                     AlarmRegionService
                 ]
             })

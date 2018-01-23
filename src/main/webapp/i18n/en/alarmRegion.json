@@ -23,7 +23,8 @@
             "leftDownX": "Left Down X",
             "leftDownY": "Left Down Y",
             "rightDownX": "Right Down X",
-            "rightDownY": "Right Down Y"
+            "rightDownY": "Right Down Y",
+            "camera": "Camera"
         }
     }
 }

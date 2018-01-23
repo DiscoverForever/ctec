@@ -53,8 +53,7 @@ public class AlarmHistory implements Serializable {
     @Column(name = "jhi_time")
     private ZonedDateTime time;
 
-    @OneToOne
-    @JoinColumn(unique = true)
+    @ManyToOne
     private Camera camera;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

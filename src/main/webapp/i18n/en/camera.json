@@ -36,6 +36,7 @@
             "fightWarnLimit": "Fight Warn Limit",
             "abnormalActionWarnLimit": "Abnormal Action Warn Limit",
             "filterType": "Filter Type",
+            "alarmHistory": "Alarm History",
             "alarmRegion": "Alarm Region"
         }
     }

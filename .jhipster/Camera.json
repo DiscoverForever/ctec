@@ -2,11 +2,15 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-one",
+            "relationshipType": "one-to-many",
+            "relationshipName": "alarmHistory",
+            "otherEntityName": "alarmHistory",
+            "otherEntityRelationshipName": "camera"
+        },
+        {
+            "relationshipType": "one-to-many",
             "relationshipName": "alarmRegion",
             "otherEntityName": "alarmRegion",
-            "otherEntityField": "id",
-            "ownerSide": true,
             "otherEntityRelationshipName": "camera"
         }
     ],
@@ -39,8 +43,7 @@
         {
             "fieldName": "collectStandards",
             "javadoc": "采集标准",
-            "fieldType": "CollectStandards",
-            "fieldValues": "NORMAL"
+            "fieldType": "String"
         },
         {
             "fieldName": "deviceStatus",

@@ -1,6 +1,13 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "camera",
+            "otherEntityName": "camera",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
     "fields": [
         {
             "fieldName": "leftUpX",

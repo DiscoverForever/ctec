@@ -26,7 +26,7 @@
         </dd>
         <dt><span jhiTranslate="ctecApp.camera.collectStandards">Collect Standards</span></dt>
         <dd>
-            <span jhiTranslate="{{'ctecApp.CollectStandards.' + camera.collectStandards}}">{{camera.collectStandards}}</span>
+            <span>{{camera.collectStandards}}</span>
         </dd>
         <dt><span jhiTranslate="ctecApp.camera.deviceStatus">Device Status</span></dt>
         <dd>
@@ -83,12 +83,6 @@
         <dt><span jhiTranslate="ctecApp.camera.filterType">Filter Type</span></dt>
         <dd>
             <span jhiTranslate="{{'ctecApp.FilterType.' + camera.filterType}}">{{camera.filterType}}</span>
-        </dd>
-        <dt><span jhiTranslate="ctecApp.camera.alarmRegion">Alarm Region</span></dt>
-        <dd>
-            <div *ngIf="camera.alarmRegion">
-                <a [routerLink]="['/alarm-region', camera.alarmRegion?.id]">{{camera.alarmRegion?.id}}</a>
-            </div>
         </dd>
     </dl>
 

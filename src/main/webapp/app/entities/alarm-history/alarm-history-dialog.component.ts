@@ -36,19 +36,8 @@ export class AlarmHistoryDialogComponent implements OnInit {
 
     ngOnInit() {
         this.isSaving = false;
-        this.cameraService
-            .query({filter: 'alarmhistory-is-null'})
-            .subscribe((res: ResponseWrapper) => {
-                if (!this.alarmHistory.camera || !this.alarmHistory.camera.id) {
-                    this.cameras = res.json;
-                } else {
-                    this.cameraService
-                        .find(this.alarmHistory.camera.id)
-                        .subscribe((subRes: Camera) => {
-                            this.cameras = [subRes].concat(res.json);
-                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
-                }
-            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.cameraService.query()
+            .subscribe((res: ResponseWrapper) => { this.cameras = res.json; }, (res: ResponseWrapper) => this.onError(res.json));
     }
 
     byteSize(field) {

@@ -80,6 +80,9 @@ public class AlarmRegion implements Serializable {
     @Column(name = "right_down_y")
     private Float rightDownY;
 
+    @ManyToOne
+    private Camera camera;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -191,6 +194,19 @@ public class AlarmRegion implements Serializable {
 
     public void setRightDownY(Float rightDownY) {
         this.rightDownY = rightDownY;
+    }
+
+    public Camera getCamera() {
+        return camera;
+    }
+
+    public AlarmRegion camera(Camera camera) {
+        this.camera = camera;
+        return this;
+    }
+
+    public void setCamera(Camera camera) {
+        this.camera = camera;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

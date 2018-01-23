@@ -30,7 +30,6 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.cetc.cctv.domain.enumeration.CollectStandards;
 import com.cetc.cctv.domain.enumeration.DeviceStatus;
 import com.cetc.cctv.domain.enumeration.FilterType;
 /**
@@ -57,8 +56,8 @@ public class CameraResourceIntTest {
     private static final String DEFAULT_BELONG_CHANNEL = "AAAAAAAAAA";
     private static final String UPDATED_BELONG_CHANNEL = "BBBBBBBBBB";
 
-    private static final CollectStandards DEFAULT_COLLECT_STANDARDS = CollectStandards.NORMAL;
-    private static final CollectStandards UPDATED_COLLECT_STANDARDS = CollectStandards.NORMAL;
+    private static final String DEFAULT_COLLECT_STANDARDS = "AAAAAAAAAA";
+    private static final String UPDATED_COLLECT_STANDARDS = "BBBBBBBBBB";
 
     private static final DeviceStatus DEFAULT_DEVICE_STATUS = DeviceStatus.RUNNING;
     private static final DeviceStatus UPDATED_DEVICE_STATUS = DeviceStatus.STOP;
