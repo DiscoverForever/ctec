@@ -101,7 +101,9 @@
             "edit": "Edit",
             "open": "Open",
             "save": "Save",
-            "view": "View"
+            "view": "View",
+            "play": "play",
+            "stop": "stop"
         },
         "detail": {
             "field": "Field",

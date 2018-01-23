@@ -104,7 +104,9 @@
             "edit": "编辑",
             "open": "Open",
             "save": "保存",
-            "view": "查看"
+            "view": "查看",
+            "play": "播放",
+            "stop": "停止"
         },
         "detail": {
             "field": "字段",
