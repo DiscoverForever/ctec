@@ -16,8 +16,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -43,6 +45,9 @@ public class AlarmHistoryResource {
 
     private final AlarmHistorySearchRepository alarmHistorySearchRepository;
 
+    @Resource
+    private SimpMessagingTemplate simpMessagingTemplate;
+
     public AlarmHistoryResource(AlarmHistoryRepository alarmHistoryRepository, AlarmHistorySearchRepository alarmHistorySearchRepository) {
         this.alarmHistoryRepository = alarmHistoryRepository;
         this.alarmHistorySearchRepository = alarmHistorySearchRepository;
@@ -64,6 +69,7 @@ public class AlarmHistoryResource {
         }
         AlarmHistory result = alarmHistoryRepository.save(alarmHistory);
         alarmHistorySearchRepository.save(result);
+        this.sendAlarmToFront(result);
         return ResponseEntity.created(new URI("/api/alarm-histories/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -151,6 +157,16 @@ public class AlarmHistoryResource {
         Page<AlarmHistory> page = alarmHistorySearchRepository.search(queryStringQuery(query), pageable);
         HttpHeaders headers = PaginationUtil.generateSearchPaginationHttpHeaders(query, page, "/api/_search/alarm-histories");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * 推送警报到前端
+     * @param alarmHistory
+     */
+    @GetMapping("/sendAlarmToFront")
+    public void sendAlarmToFront(AlarmHistory alarmHistory) {
+        log.info("收到警报");
+        this.simpMessagingTemplate.convertAndSend("/topic/alarm", alarmHistory);
     }
 
 }
