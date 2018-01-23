@@ -11,7 +11,7 @@ belongServer String,
 /**所属通道*/
 belongChannel String,
 /**采集标准*/
-collectStandards CollectStandards,
+collectStandards String,
 /**设备状态*/
 deviceStatus DeviceStatus,
 /**快速运动预警*/
@@ -44,10 +44,6 @@ abnormalActionWarnLimit Integer
 filterType FilterType
 }
 
-/**信息采集类型*/
-enum CollectStandards {
-  NORMAL
-}
 /**设备状态*/
 enum DeviceStatus {
   RUNNING,
@@ -140,12 +136,11 @@ enum VideoType {
   LOCAL,
   REALTIME
 }
-relationship OneToOne {
-	Camera{alarmRegion} to AlarmRegion
-} 
 
-relationship OneToOne {
-	AlarmHistory{camera} to Camera
+relationship OneToMany {
+	Camera{alarmHistory} to AlarmHistory,
+    Camera{alarmRegion} to AlarmRegion
+
 }
 
 paginate * with pagination
