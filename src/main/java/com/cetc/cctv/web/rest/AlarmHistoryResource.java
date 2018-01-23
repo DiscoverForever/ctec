@@ -16,15 +16,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessageSendingOperations;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import static org.elasticsearch.index.query.QueryBuilders.*;
 
@@ -42,6 +44,9 @@ public class AlarmHistoryResource {
     private final AlarmHistoryRepository alarmHistoryRepository;
 
     private final AlarmHistorySearchRepository alarmHistorySearchRepository;
+
+    @Resource
+    private SimpMessagingTemplate simpMessagingTemplate;
 
     public AlarmHistoryResource(AlarmHistoryRepository alarmHistoryRepository, AlarmHistorySearchRepository alarmHistorySearchRepository) {
         this.alarmHistoryRepository = alarmHistoryRepository;
@@ -64,6 +69,10 @@ public class AlarmHistoryResource {
         }
         AlarmHistory result = alarmHistoryRepository.save(alarmHistory);
         alarmHistorySearchRepository.save(result);
+        HashMap map = new HashMap();
+        map.put("id", result.getId());
+        // 接到报警通过websocket发送给前端
+        this.simpMessagingTemplate.convertAndSend("/topic/alarm", map);
         return ResponseEntity.created(new URI("/api/alarm-histories/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
