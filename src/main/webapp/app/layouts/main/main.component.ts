@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
 
-import { JhiLanguageHelper } from '../../shared';
+import { JhiLanguageHelper, JhiTrackerService } from '../../shared';
 
 @Component({
     selector: 'jhi-main',
@@ -11,6 +11,7 @@ export class JhiMainComponent implements OnInit {
 
     constructor(
         private jhiLanguageHelper: JhiLanguageHelper,
+        private jhiTrackerService: JhiTrackerService,
         private router: Router
     ) {}
 
@@ -27,6 +28,10 @@ export class JhiMainComponent implements OnInit {
             if (event instanceof NavigationEnd) {
                 this.jhiLanguageHelper.updateTitle(this.getPageTitle(this.router.routerState.snapshot.root));
             }
+        });
+        this.jhiTrackerService.subscribe('/topic/alarm');
+        this.jhiTrackerService.receive().subscribe((message) => {
+            alert(message)
         });
     }
 }
