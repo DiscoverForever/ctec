@@ -1,1 +1,30 @@
-{"ctecApp":{"alarmRegion":{"home":{"title":"报警区域","createLabel":"创建新报警区域","createOrEditLabel":"创建或编辑报警区域","search":"查找报警区域"},"created":"报警区域 {{ param }} 创建成功","updated":"报警区域 {{ param }} 更新成功","deleted":"报警区域 {{ param }} 删除成功","delete":{"question":"你确定要删除 报警区域 {{ id }} 吗？"},"detail":{"title":"报警区域"},"leftUpX":"左上X","leftUpY":"左上Y","rightUpX":"右上X","rightUpY":"右上Y","leftDownX":"左下X","leftDownY":"左下Y","rightDownX":"右下X","rightDownY":"右下Y"}}}
+{
+    "ctecApp": {
+        "alarmRegion": {
+            "home": {
+                "title": "报警区域",
+                "createLabel": "创建新报警区域",
+                "createOrEditLabel": "创建或编辑报警区域",
+                "search": "查找报警区域"
+            },
+            "created": "报警区域 {{ param }} 创建成功",
+            "updated": "报警区域 {{ param }} 更新成功",
+            "deleted": "报警区域 {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 报警区域 {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "报警区域"
+            },
+            "leftUpX": "左上X",
+            "leftUpY": "左上Y",
+            "rightUpX": "右上X",
+            "rightUpY": "右上Y",
+            "leftDownX": "左下X",
+            "leftDownY": "左下Y",
+            "rightDownX": "右下X",
+            "rightDownY": "右下Y",
+            "camera": "Camera"
+        }
+    }
+}

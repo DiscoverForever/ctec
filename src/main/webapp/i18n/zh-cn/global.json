@@ -11,6 +11,9 @@
                 "alarmRegion": "警报区域",
                 "alarmHistory": "报警历史",
                 "analysisTask": "分析任务",
+                "camera": "摄像头",
+                "alarmRegion": "警报区域",
+                "alarmHistory": "报警历史",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
