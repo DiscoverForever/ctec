@@ -21,11 +21,11 @@ export class JhiTrackerService {
     private subscription: Subscription;
 
     constructor(
-        private router: Router,
-        private authServerProvider: AuthServerProvider,
-        private $window: WindowRef,
+        private router?: Router,
+        private authServerProvider?: AuthServerProvider,
+        private $window?: WindowRef,
         // tslint:disable-next-line: no-unused-variable
-        private csrfService: CSRFService
+        private csrfService?: CSRFService
     ) {
         this.connection = this.createConnection();
         this.listener = this.createListener();

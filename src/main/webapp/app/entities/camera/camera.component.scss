@@ -1,0 +1,27 @@
+.card-list-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    .card {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 300px;
+        height: 400px;
+        border-radius: 5px;
+        border: 1px solid #f0f0f0;
+        margin: 10px 20px;
+        canvas {
+            flex: 1;
+            width: 300px;
+            background: #f0f0f0;
+        }
+        h2 {
+            font-size: 16px;
+        }
+        h3 {
+            font-size: 18px;
+        }
+    }
+}

@@ -6,10 +6,13 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 import { Camera } from './camera.model';
 import { CameraService } from './camera.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
-
+import * as JsMpeg from 'jsmpeg';
 @Component({
     selector: 'jhi-camera',
-    templateUrl: './camera.component.html'
+    templateUrl: './camera.component.html',
+    styleUrls: [
+        'camera.component.scss'
+    ]
 })
 export class CameraComponent implements OnInit, OnDestroy {
 
@@ -134,6 +137,12 @@ currentAccount: any;
             result.push('id');
         }
         return result;
+    }
+
+    getVideoImages(videoUrl: string, canvas: any) {
+        const client = new WebSocket('ws://localhost:9999');
+        const player = new JsMpeg(client, {canvas: canvas});
+        player.play();
     }
 
     private onSuccess(data, headers) {
