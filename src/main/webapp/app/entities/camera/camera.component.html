@@ -108,7 +108,13 @@
     </div>
     <div class="card-list-wrapper">
         <div class="card" *ngFor="let camera of cameras ;trackBy: trackId">
-            <canvas (click)="getVideoImages('', $event.target)"></canvas>
+            <div class="video-wrapper" [ngClass]="{'full-screen': fullScreen}">
+                <canvas></canvas>
+                <i class="fa fa-expand fa-1x" (click)="fullScreen = true" *ngIf="!fullScreen"></i>
+                <i class="fa fa-compress fa-2x" (click)="fullScreen = false" *ngIf="fullScreen"></i>
+                <label>是否处理</label>
+                <input type="checkbox">
+            </div>
             <h2>摄像头名称:{{camera.name}}</h2>
             <h3>摄像头IP:{{camera.cameraIP}}</h3>
             <div class="btn-group flex-btn-group-container">
@@ -134,10 +140,15 @@
                     <span class="fa fa-remove"></span>
                     <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
                 </button>
-                <button type="submit" (click)="getVideoImages('', $event.target)"
-                        class="btn btn-danger btn-sm">
-                    <span class="fa fa-remove"></span>
+                <button type="submit" (click)="playVideo(camera.belongServer, $event, camera.id)"
+                        class="btn btn-dark btn-sm">
+                    <span class="fa fa-play"></span>
                     <span class="d-none d-md-inline" jhiTranslate="entity.action.play">play</span>
+                </button>
+                <button type="submit" (click)="stopVideo(camera.id)"
+                        class="btn btn-secondary btn-sm">
+                    <span class="fa fa-stop"></span>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.stop">stop</span>
                 </button>
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
@@ -31,6 +31,9 @@ currentAccount: any;
     predicate: any;
     previousPage: any;
     reverse: any;
+    fullScreen: boolean;
+    videos: Array<Video>;
+
 
     constructor(
         private cameraService: CameraService,
@@ -39,8 +42,11 @@ currentAccount: any;
         private principal: Principal,
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private elementRef: ElementRef
     ) {
+        this.fullScreen = false;
+        this.videos = [];
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
             this.page = data.pagingParams.page;
@@ -139,12 +145,25 @@ currentAccount: any;
         return result;
     }
 
-    getVideoImages(videoUrl: string, canvas: any) {
+    initVideo(videoUrl: string, canvas: any, id: number) {
         const client = new WebSocket('ws://localhost:9999');
-        const player = new JsMpeg(client, {canvas: canvas});
-        player.play();
+        const player = new JsMpeg(client, {canvas: canvas, autoplay: true});
+        this.videos.push({id, player, client});
+
     }
 
+    playVideo(videoUrl: string, event: any, id: number) {
+        const canvas = event.currentTarget.parentNode.parentNode.children[0].children[0]
+        if (!this.videos[id])
+            this.initVideo(videoUrl, canvas, id);
+        // this.videos.find(video => video.id === id).player.play()
+    }
+
+    stopVideo(id: number) {
+        const video = this.videos.find(video => video.id === id);
+        video.player.stop();
+        this.videos = this.videos.filter(video => video.id !== id);
+    }
     private onSuccess(data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
@@ -155,4 +174,9 @@ currentAccount: any;
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
     }
+}
+interface Video {
+    id: number;
+    player: any;
+    client: any;
 }
