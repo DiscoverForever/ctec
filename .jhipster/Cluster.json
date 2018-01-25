@@ -1,0 +1,58 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "videoServerIp",
+            "javadoc": "视频服务器IP",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "videoChannelNumber",
+            "javadoc": "视频通道数",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "videoServerPort",
+            "javadoc": "视频服务器端口",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "videoServerUsername",
+            "javadoc": "视频服务器用户名",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "videoServerPassword",
+            "javadoc": "视频服务器密码",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dbIp",
+            "javadoc": "数据库IP",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dbName",
+            "javadoc": "数据库名称",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "clusterNodeIp",
+            "javadoc": "节点IP",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "clusterNodeName",
+            "javadoc": "节点名称",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180125031023",
+    "javadoc": "集群",
+    "entityTableName": "cluster",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

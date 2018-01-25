@@ -1,0 +1,58 @@
+
+<div *ngIf="cluster">
+    <h2><span jhiTranslate="ctecApp.cluster.detail.title">Cluster</span> {{cluster.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ctecApp.cluster.videoServerIp">Video Server Ip</span></dt>
+        <dd>
+            <span>{{cluster.videoServerIp}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.cluster.videoChannelNumber">Video Channel Number</span></dt>
+        <dd>
+            <span>{{cluster.videoChannelNumber}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.cluster.videoServerPort">Video Server Port</span></dt>
+        <dd>
+            <span>{{cluster.videoServerPort}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.cluster.videoServerUsername">Video Server Username</span></dt>
+        <dd>
+            <span>{{cluster.videoServerUsername}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.cluster.videoServerPassword">Video Server Password</span></dt>
+        <dd>
+            <span>{{cluster.videoServerPassword}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.cluster.dbIp">Db Ip</span></dt>
+        <dd>
+            <span>{{cluster.dbIp}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.cluster.dbName">Db Name</span></dt>
+        <dd>
+            <span>{{cluster.dbName}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.cluster.clusterNodeIp">Cluster Node Ip</span></dt>
+        <dd>
+            <span>{{cluster.clusterNodeIp}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.cluster.clusterNodeName">Cluster Node Name</span></dt>
+        <dd>
+            <span>{{cluster.clusterNodeName}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'cluster/'+ cluster.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

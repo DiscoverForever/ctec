@@ -1,0 +1,70 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myClusterLabel" jhiTranslate="ctecApp.cluster.home.createOrEditLabel">Create or edit a Cluster</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!cluster.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="cluster.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.cluster.videoServerIp" for="field_videoServerIp">Video Server Ip</label>
+            <input type="text" class="form-control" name="videoServerIp" id="field_videoServerIp"
+                [(ngModel)]="cluster.videoServerIp" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.cluster.videoChannelNumber" for="field_videoChannelNumber">Video Channel Number</label>
+            <input type="number" class="form-control" name="videoChannelNumber" id="field_videoChannelNumber"
+                [(ngModel)]="cluster.videoChannelNumber" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.cluster.videoServerPort" for="field_videoServerPort">Video Server Port</label>
+            <input type="number" class="form-control" name="videoServerPort" id="field_videoServerPort"
+                [(ngModel)]="cluster.videoServerPort" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.cluster.videoServerUsername" for="field_videoServerUsername">Video Server Username</label>
+            <input type="text" class="form-control" name="videoServerUsername" id="field_videoServerUsername"
+                [(ngModel)]="cluster.videoServerUsername" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.cluster.videoServerPassword" for="field_videoServerPassword">Video Server Password</label>
+            <input type="text" class="form-control" name="videoServerPassword" id="field_videoServerPassword"
+                [(ngModel)]="cluster.videoServerPassword" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.cluster.dbIp" for="field_dbIp">Db Ip</label>
+            <input type="text" class="form-control" name="dbIp" id="field_dbIp"
+                [(ngModel)]="cluster.dbIp" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.cluster.dbName" for="field_dbName">Db Name</label>
+            <input type="text" class="form-control" name="dbName" id="field_dbName"
+                [(ngModel)]="cluster.dbName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.cluster.clusterNodeIp" for="field_clusterNodeIp">Cluster Node Ip</label>
+            <input type="text" class="form-control" name="clusterNodeIp" id="field_clusterNodeIp"
+                [(ngModel)]="cluster.clusterNodeIp" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.cluster.clusterNodeName" for="field_clusterNodeName">Cluster Node Name</label>
+            <input type="text" class="form-control" name="clusterNodeName" id="field_clusterNodeName"
+                [(ngModel)]="cluster.clusterNodeName" />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
