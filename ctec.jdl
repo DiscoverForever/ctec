@@ -80,6 +80,7 @@ entity AlarmRegion {
   rightDownY Float
 
 }
+/**周界防护区域*/
 entity PerimeterProtectRegion {
   /**左上X*/
   leftUpX Float,

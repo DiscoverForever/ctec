@@ -177,6 +177,10 @@ public class Camera implements Serializable {
     @JoinColumn(unique = true)
     private AlarmRegion alarmRegion;
 
+    @OneToOne
+    @JoinColumn(unique = true)
+    private PerimeterProtectRegion perimeterProtectRegion;
+
     @OneToMany(mappedBy = "camera")
     @JsonIgnore
     private Set<AlarmHistory> alarmHistories = new HashSet<>();
@@ -461,6 +465,19 @@ public class Camera implements Serializable {
 
     public void setAlarmRegion(AlarmRegion alarmRegion) {
         this.alarmRegion = alarmRegion;
+    }
+
+    public PerimeterProtectRegion getPerimeterProtectRegion() {
+        return perimeterProtectRegion;
+    }
+
+    public Camera perimeterProtectRegion(PerimeterProtectRegion perimeterProtectRegion) {
+        this.perimeterProtectRegion = perimeterProtectRegion;
+        return this;
+    }
+
+    public void setPerimeterProtectRegion(PerimeterProtectRegion perimeterProtectRegion) {
+        this.perimeterProtectRegion = perimeterProtectRegion;
     }
 
     public Set<AlarmHistory> getAlarmHistories() {

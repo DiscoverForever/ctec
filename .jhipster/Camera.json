@@ -10,6 +10,14 @@
             "otherEntityRelationshipName": "camera"
         },
         {
+            "relationshipType": "one-to-one",
+            "relationshipName": "perimeterProtectRegion",
+            "otherEntityName": "perimeterProtectRegion",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "camera"
+        },
+        {
             "relationshipType": "one-to-many",
             "relationshipName": "alarmHistory",
             "otherEntityName": "alarmHistory",

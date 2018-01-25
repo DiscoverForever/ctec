@@ -1,0 +1,29 @@
+{
+    "ctecApp": {
+        "perimeterProtectRegion" : {
+            "home": {
+                "title": "Perimeter Protect Regions",
+                "createLabel": "创建新 Perimeter Protect Region",
+                "createOrEditLabel": "创建或编辑 Perimeter Protect Region",
+                "search": "查找 Perimeter Protect Region"
+            },
+            "created": "Perimeter Protect Region {{ param }} 创建成功",
+            "updated": "Perimeter Protect Region {{ param }} 更新成功",
+            "deleted": "Perimeter Protect Region {{ param }} 删除成功",
+            "delete": {
+                "question": "你确定要删除 Perimeter Protect Region {{ id }} 吗？"
+            },
+            "detail": {
+                "title": "Perimeter Protect Region"
+            },
+            "leftUpX": "左上X",
+            "leftUpY": "左上Y",
+            "rightUpX": "右上X",
+            "rightUpY": "右上Y",
+            "leftDownX": "左下X",
+            "leftDownY": "左下Y",
+            "rightDownX": "右下X",
+            "rightDownY": "右下Y"
+        }
+    }
+}

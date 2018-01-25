@@ -37,6 +37,7 @@
             "abnormalActionWarnLimit": "Abnormal Action Warn Limit",
             "filterType": "Filter Type",
             "alarmRegion": "Alarm Region",
+            "perimeterProtectRegion": "Perimeter Protect Region",
             "alarmHistory": "Alarm History"
         }
     }

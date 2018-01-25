@@ -12,6 +12,7 @@
                 "alarmHistory": "Alarm History",
                 "analysisTask": "Analysis Task",
                 "cluster": "Cluster",
+                "perimeterProtectRegion": "Perimeter Protect Region",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -9,6 +9,7 @@ import { CameraDialogComponent } from '../../../../../../main/webapp/app/entitie
 import { CameraService } from '../../../../../../main/webapp/app/entities/camera/camera.service';
 import { Camera } from '../../../../../../main/webapp/app/entities/camera/camera.model';
 import { AlarmRegionService } from '../../../../../../main/webapp/app/entities/alarm-region';
+import { PerimeterProtectRegionService } from '../../../../../../main/webapp/app/entities/perimeter-protect-region';
 
 describe('Component Tests', () => {
 
@@ -25,6 +26,7 @@ describe('Component Tests', () => {
                 declarations: [CameraDialogComponent],
                 providers: [
                     AlarmRegionService,
+                    PerimeterProtectRegionService,
                     CameraService
                 ]
             })
