@@ -39,6 +39,7 @@ export class Camera implements BaseEntity {
         public abnormalActionWarnLimit?: number,
         public filterType?: FilterType,
         public alarmRegion?: BaseEntity,
+        public perimeterProtectRegion?: BaseEntity,
         public alarmHistories?: BaseEntity[],
     ) {
         this.fastRunWarn = false;

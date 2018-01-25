@@ -51,6 +51,7 @@
             <th jhiSortBy="abnormalActionWarnLimit"><span jhiTranslate="ctecApp.camera.abnormalActionWarnLimit">Abnormal Action Warn Limit</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="filterType"><span jhiTranslate="ctecApp.camera.filterType">Filter Type</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="alarmRegion.id"><span jhiTranslate="ctecApp.camera.alarmRegion">Alarm Region</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="perimeterProtectRegion.id"><span jhiTranslate="ctecApp.camera.perimeterProtectRegion">Perimeter Protect Region</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -80,6 +81,11 @@
                 <td>
                     <div *ngIf="camera.alarmRegion">
                         <a [routerLink]="['../alarm-region', camera.alarmRegion?.id ]" >{{camera.alarmRegion?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="camera.perimeterProtectRegion">
+                        <a [routerLink]="['../perimeter-protect-region', camera.perimeterProtectRegion?.id ]" >{{camera.perimeterProtectRegion?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">

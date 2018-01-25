@@ -10,6 +10,7 @@ import { Camera } from './camera.model';
 import { CameraPopupService } from './camera-popup.service';
 import { CameraService } from './camera.service';
 import { AlarmRegion, AlarmRegionService } from '../alarm-region';
+import { PerimeterProtectRegion, PerimeterProtectRegionService } from '../perimeter-protect-region';
 import { ResponseWrapper } from '../../shared';
 
 @Component({
@@ -23,11 +24,14 @@ export class CameraDialogComponent implements OnInit {
 
     alarmregions: AlarmRegion[];
 
+    perimeterprotectregions: PerimeterProtectRegion[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private cameraService: CameraService,
         private alarmRegionService: AlarmRegionService,
+        private perimeterProtectRegionService: PerimeterProtectRegionService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -44,6 +48,19 @@ export class CameraDialogComponent implements OnInit {
                         .find(this.camera.alarmRegion.id)
                         .subscribe((subRes: AlarmRegion) => {
                             this.alarmregions = [subRes].concat(res.json);
+                        }, (subRes: ResponseWrapper) => this.onError(subRes.json));
+                }
+            }, (res: ResponseWrapper) => this.onError(res.json));
+        this.perimeterProtectRegionService
+            .query({filter: 'camera-is-null'})
+            .subscribe((res: ResponseWrapper) => {
+                if (!this.camera.perimeterProtectRegion || !this.camera.perimeterProtectRegion.id) {
+                    this.perimeterprotectregions = res.json;
+                } else {
+                    this.perimeterProtectRegionService
+                        .find(this.camera.perimeterProtectRegion.id)
+                        .subscribe((subRes: PerimeterProtectRegion) => {
+                            this.perimeterprotectregions = [subRes].concat(res.json);
                         }, (subRes: ResponseWrapper) => this.onError(subRes.json));
                 }
             }, (res: ResponseWrapper) => this.onError(res.json));
@@ -84,6 +101,10 @@ export class CameraDialogComponent implements OnInit {
     }
 
     trackAlarmRegionById(index: number, item: AlarmRegion) {
+        return item.id;
+    }
+
+    trackPerimeterProtectRegionById(index: number, item: PerimeterProtectRegion) {
         return item.id;
     }
 }

@@ -90,6 +90,12 @@
                 <a [routerLink]="['/alarm-region', camera.alarmRegion?.id]">{{camera.alarmRegion?.id}}</a>
             </div>
         </dd>
+        <dt><span jhiTranslate="ctecApp.camera.perimeterProtectRegion">Perimeter Protect Region</span></dt>
+        <dd>
+            <div *ngIf="camera.perimeterProtectRegion">
+                <a [routerLink]="['/perimeter-protect-region', camera.perimeterProtectRegion?.id]">{{camera.perimeterProtectRegion?.id}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

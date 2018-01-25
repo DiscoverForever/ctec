@@ -129,6 +129,13 @@
                 <option [ngValue]="alarmRegionOption.id === camera.alarmRegion?.id ? camera.alarmRegion : alarmRegionOption" *ngFor="let alarmRegionOption of alarmregions; trackBy: trackAlarmRegionById">{{alarmRegionOption.id}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.perimeterProtectRegion" for="field_perimeterProtectRegion">Perimeter Protect Region</label>
+            <select class="form-control" id="field_perimeterProtectRegion" name="perimeterProtectRegion" [(ngModel)]="camera.perimeterProtectRegion">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="perimeterProtectRegionOption.id === camera.perimeterProtectRegion?.id ? camera.perimeterProtectRegion : perimeterProtectRegionOption" *ngFor="let perimeterProtectRegionOption of perimeterprotectregions; trackBy: trackPerimeterProtectRegionById">{{perimeterProtectRegionOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
