@@ -80,6 +80,24 @@ entity AlarmRegion {
   rightDownY Float
 
 }
+entity PerimeterProtectRegion {
+  /**左上X*/
+  leftUpX Float,
+  /**左上Y*/
+  leftUpY Float,
+  /**右上X*/
+  rightUpX Float,
+  /**右上Y*/
+  rightUpY Float,
+  /**左下X*/
+  leftDownX Float,
+  /**左下Y*/
+  leftDownY Float,
+  /**右下X*/
+  rightDownX Float,
+  /**右下Y*/
+  rightDownY Float
+}
 
 /**历史警报*/
 entity AlarmHistory {
@@ -160,7 +178,8 @@ entity Cluster {
 
 }
 relationship OneToOne {
-  Camera{alarmRegion} to AlarmRegion
+  Camera{alarmRegion} to AlarmRegion,
+  Camera{perimeterProtectRegion} to PerimeterProtectRegion
 }
 
 relationship OneToMany {
