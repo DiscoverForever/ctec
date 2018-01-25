@@ -12,6 +12,7 @@
                 "alarmHistory": "报警历史",
                 "analysisTask": "分析任务",
                 "cluster": "集群",
+                "perimeterProtectRegion": "周界防护区域",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
