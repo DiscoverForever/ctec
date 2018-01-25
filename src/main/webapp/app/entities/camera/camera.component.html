@@ -108,9 +108,9 @@
     </div>
     <div class="card-list-wrapper">
         <div class="card" *ngFor="let camera of cameras ;trackBy: trackId">
-            <div class="video-wrapper" [ngClass]="{'full-screen': fullScreen}">
+            <div class="video-wrapper" [ngClass]="{'full-screen': fullScreen && currentFullScrentVideoId === camera.id}">
                 <canvas></canvas>
-                <i class="fa fa-expand fa-1x" (click)="fullScreen = true" *ngIf="!fullScreen"></i>
+                <i class="fa fa-expand fa-1x" (click)="fullScreen = true; currentFullScrentVideoId = camera.id" *ngIf="!fullScreen"></i>
                 <i class="fa fa-compress fa-2x" (click)="fullScreen = false" *ngIf="fullScreen"></i>
                 <label>是否处理</label>
                 <input type="checkbox">

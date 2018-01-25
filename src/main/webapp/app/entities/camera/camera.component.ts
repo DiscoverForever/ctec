@@ -33,6 +33,7 @@ currentAccount: any;
     reverse: any;
     fullScreen: boolean;
     videos: Array<Video>;
+    currentFullScrentVideoId: number;
 
 
     constructor(
