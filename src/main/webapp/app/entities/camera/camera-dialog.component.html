@@ -122,6 +122,13 @@
             </select>
         </div>
 
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.alarmRegion" for="field_alarmRegion">Alarm Region</label>
+            <select class="form-control" id="field_alarmRegion" name="alarmRegion" [(ngModel)]="camera.alarmRegion">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="alarmRegionOption.id === camera.alarmRegion?.id ? camera.alarmRegion : alarmRegionOption" *ngFor="let alarmRegionOption of alarmregions; trackBy: trackAlarmRegionById">{{alarmRegionOption.id}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

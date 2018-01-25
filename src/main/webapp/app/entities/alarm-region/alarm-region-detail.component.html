@@ -36,12 +36,6 @@
         <dd>
             <span>{{alarmRegion.rightDownY}}</span>
         </dd>
-        <dt><span jhiTranslate="ctecApp.alarmRegion.camera">Camera</span></dt>
-        <dd>
-            <div *ngIf="alarmRegion.camera">
-                <a [routerLink]="['/camera', alarmRegion.camera?.id]">{{alarmRegion.camera?.id}}</a>
-            </div>
-        </dd>
     </dl>
 
     <button type="submit"

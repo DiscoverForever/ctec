@@ -53,13 +53,6 @@
                 [(ngModel)]="alarmRegion.rightDownY" />
         </div>
 
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ctecApp.alarmRegion.camera" for="field_camera">Camera</label>
-            <select class="form-control" id="field_camera" name="camera" [(ngModel)]="alarmRegion.camera" >
-                <option [ngValue]="null"></option>
-                <option [ngValue]="cameraOption.id === alarmRegion.camera?.id ? alarmRegion.camera : cameraOption" *ngFor="let cameraOption of cameras; trackBy: trackCameraById">{{cameraOption.id}}</option>
-            </select>
-        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

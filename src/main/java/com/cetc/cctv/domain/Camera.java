@@ -173,13 +173,13 @@ public class Camera implements Serializable {
     @Column(name = "filter_type")
     private FilterType filterType;
 
-    @OneToMany(mappedBy = "camera")
-    @JsonIgnore
-    private Set<AlarmHistory> alarmHistories = new HashSet<>();
+    @OneToOne
+    @JoinColumn(unique = true)
+    private AlarmRegion alarmRegion;
 
     @OneToMany(mappedBy = "camera")
     @JsonIgnore
-    private Set<AlarmRegion> alarmRegions = new HashSet<>();
+    private Set<AlarmHistory> alarmHistories = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -450,6 +450,19 @@ public class Camera implements Serializable {
         this.filterType = filterType;
     }
 
+    public AlarmRegion getAlarmRegion() {
+        return alarmRegion;
+    }
+
+    public Camera alarmRegion(AlarmRegion alarmRegion) {
+        this.alarmRegion = alarmRegion;
+        return this;
+    }
+
+    public void setAlarmRegion(AlarmRegion alarmRegion) {
+        this.alarmRegion = alarmRegion;
+    }
+
     public Set<AlarmHistory> getAlarmHistories() {
         return alarmHistories;
     }
@@ -473,31 +486,6 @@ public class Camera implements Serializable {
 
     public void setAlarmHistories(Set<AlarmHistory> alarmHistories) {
         this.alarmHistories = alarmHistories;
-    }
-
-    public Set<AlarmRegion> getAlarmRegions() {
-        return alarmRegions;
-    }
-
-    public Camera alarmRegions(Set<AlarmRegion> alarmRegions) {
-        this.alarmRegions = alarmRegions;
-        return this;
-    }
-
-    public Camera addAlarmRegion(AlarmRegion alarmRegion) {
-        this.alarmRegions.add(alarmRegion);
-        alarmRegion.setCamera(this);
-        return this;
-    }
-
-    public Camera removeAlarmRegion(AlarmRegion alarmRegion) {
-        this.alarmRegions.remove(alarmRegion);
-        alarmRegion.setCamera(null);
-        return this;
-    }
-
-    public void setAlarmRegions(Set<AlarmRegion> alarmRegions) {
-        this.alarmRegions = alarmRegions;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

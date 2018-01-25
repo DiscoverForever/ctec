@@ -4,6 +4,7 @@ import { CtecCameraModule } from './camera/camera.module';
 import { CtecAlarmRegionModule } from './alarm-region/alarm-region.module';
 import { CtecAlarmHistoryModule } from './alarm-history/alarm-history.module';
 import { CtecAnalysisTaskModule } from './analysis-task/analysis-task.module';
+import { CtecClusterModule } from './cluster/cluster.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -12,6 +13,7 @@ import { CtecAnalysisTaskModule } from './analysis-task/analysis-task.module';
         CtecAlarmRegionModule,
         CtecAlarmHistoryModule,
         CtecAnalysisTaskModule,
+        CtecClusterModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

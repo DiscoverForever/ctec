@@ -38,8 +38,8 @@ export class Camera implements BaseEntity {
         public fightWarnLimit?: number,
         public abnormalActionWarnLimit?: number,
         public filterType?: FilterType,
+        public alarmRegion?: BaseEntity,
         public alarmHistories?: BaseEntity[],
-        public alarmRegions?: BaseEntity[],
     ) {
         this.fastRunWarn = false;
         this.peopleCountLimitWarn = false;

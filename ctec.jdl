@@ -1,47 +1,47 @@
 /**摄像头*/
 entity Camera {
-/**摄像头名称*/
-name String,
-/**摄像头ID*/
-cameraID String,
-/**摄像头IP*/
-cameraIP String,
-/**所属服务器*/
-belongServer String,
-/**所属通道*/
-belongChannel String,
-/**采集标准*/
-collectStandards String,
-/**设备状态*/
-deviceStatus DeviceStatus,
-/**快速运动预警*/
-fastRunWarn Boolean,
-/**人数超限*/
-peopleCountLimitWarn Boolean,
-/**人群聚集*/
-crowdsGatherWarn Boolean,
-/**剧烈挥手预警*/
-vigorouslyWavedWarn Boolean,
-/**打架预警*/
-fightWarn Boolean,
-/**异常动作预警*/
-abnormalActionWarn Boolean,
+  /**摄像头名称*/
+  name String,
+  /**摄像头ID*/
+  cameraID String,
+  /**摄像头IP*/
+  cameraIP String,
+  /**所属服务器*/
+  belongServer String,
+  /**所属通道*/
+  belongChannel String,
+  /**采集标准*/
+  collectStandards String,
+  /**设备状态*/
+  deviceStatus DeviceStatus,
+  /**快速运动预警*/
+  fastRunWarn Boolean,
+  /**人数超限*/
+  peopleCountLimitWarn Boolean,
+  /**人群聚集*/
+  crowdsGatherWarn Boolean,
+  /**剧烈挥手预警*/
+  vigorouslyWavedWarn Boolean,
+  /**打架预警*/
+  fightWarn Boolean,
+  /**异常动作预警*/
+  abnormalActionWarn Boolean,
 
-/**快速运动预警预警值*/
-fastRunWarnLimit Integer,
-/**人数超限预警值*/
-peopleCountWarnLimit Integer,
-/**人群聚集预警值*/
-crowdsGatherWarnLimit Integer,
-/**剧烈挥手预警预警值*/
-vigorouslyWavedWarnLimit Integer,
-/**打架预警预警值*/
-fightWarnLimit Integer,
-/**异常动作预警预警值*/
-abnormalActionWarnLimit Integer
+  /**快速运动预警预警值*/
+  fastRunWarnLimit Integer,
+  /**人数超限预警值*/
+  peopleCountWarnLimit Integer,
+  /**人群聚集预警值*/
+  crowdsGatherWarnLimit Integer,
+  /**剧烈挥手预警预警值*/
+  vigorouslyWavedWarnLimit Integer,
+  /**打架预警预警值*/
+  fightWarnLimit Integer,
+  /**异常动作预警预警值*/
+  abnormalActionWarnLimit Integer
 
-/**筛选*/
-filterType FilterType
+  /**筛选*/
+  filterType FilterType
 }
 
 /**设备状态*/
@@ -92,12 +92,12 @@ entity AlarmHistory {
 }
 /**报警类型*/
 enum AlarmType {
-FAST_RUN_WARN,
-PEOPLE_COUNT_LIMIT_WARN,
-CROWDS_GATHER_WARN,
-VIGOROUSLY_WAVED_WARN,
-FIGHT_WARN,
-ABNORMAL_ACTION_WARN
+  FAST_RUN_WARN,
+  PEOPLE_COUNT_LIMIT_WARN,
+  CROWDS_GATHER_WARN,
+  VIGOROUSLY_WAVED_WARN,
+  FIGHT_WARN,
+  ABNORMAL_ACTION_WARN
 }
 /**分析任务*/
 entity AnalysisTask {
@@ -122,9 +122,9 @@ enum Priority {
 }
 /**分析类型*/
 enum AnalysisType {
-BEHAVIOR,
-STRUCTURED,
-PERIMETER_PROTECT
+  BEHAVIOR,
+  STRUCTURED,
+  PERIMETER_PROTECT
 }
 /**分析状态*/
 enum AnalysisStatus {
@@ -137,10 +137,34 @@ enum VideoType {
   REALTIME
 }
 
-relationship OneToMany {
-	Camera{alarmHistory} to AlarmHistory,
-    Camera{alarmRegion} to AlarmRegion
+/**集群*/
+entity Cluster {
+  /**视频服务器IP*/
+  videoServerIp String,
+  /**视频通道数*/
+  videoChannelNumber Integer,
+  /**视频服务器端口*/
+  videoServerPort Integer,
+  /**视频服务器用户名*/
+  videoServerUsername String,
+  /**视频服务器密码*/
+  videoServerPassword String,
+  /**数据库IP*/
+  dbIp String,
+  /**数据库名称*/
+  dbName String,
+  /**节点IP*/
+  clusterNodeIp String,
+  /**节点名称*/
+  clusterNodeName String
 
+}
+relationship OneToOne {
+  Camera{alarmRegion} to AlarmRegion
+}
+
+relationship OneToMany {
+	Camera{alarmHistory} to AlarmHistory
 }
 
 paginate * with pagination

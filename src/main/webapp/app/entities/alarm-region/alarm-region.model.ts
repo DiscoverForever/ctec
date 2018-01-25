@@ -11,7 +11,6 @@ export class AlarmRegion implements BaseEntity {
         public leftDownY?: number,
         public rightDownX?: number,
         public rightDownY?: number,
-        public camera?: BaseEntity,
     ) {
     }
 }

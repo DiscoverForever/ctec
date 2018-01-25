@@ -2,15 +2,17 @@
     "fluentMethods": true,
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "relationshipName": "alarmHistory",
-            "otherEntityName": "alarmHistory",
+            "relationshipType": "one-to-one",
+            "relationshipName": "alarmRegion",
+            "otherEntityName": "alarmRegion",
+            "otherEntityField": "id",
+            "ownerSide": true,
             "otherEntityRelationshipName": "camera"
         },
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "alarmRegion",
-            "otherEntityName": "alarmRegion",
+            "relationshipName": "alarmHistory",
+            "otherEntityName": "alarmHistory",
             "otherEntityRelationshipName": "camera"
         }
     ],
