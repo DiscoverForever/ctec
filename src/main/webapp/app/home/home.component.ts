@@ -3,6 +3,7 @@ import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
 import { Account, LoginModalService, Principal } from '../shared';
+import * as Cropper from 'cropperjs';
 @Component({
     selector: 'jhi-home',
     templateUrl: './home.component.html',
@@ -23,6 +24,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.initCropper();
         this.principal.identity().then((account) => {
             this.account = account;
         });
@@ -43,5 +45,27 @@ export class HomeComponent implements OnInit {
 
     login() {
         this.modalRef = this.loginModalService.open();
+    }
+
+    initCropper() {
+        const img = <HTMLImageElement>document.getElementById('image');
+        const cropper = new Cropper(img, {
+            viewMode: 3,
+            guides: true,
+            background: true,
+            autoCrop: true,
+            checkCrossOrigin: false,
+            crop: function(e) {
+                console.log(e.detail.x);
+                console.log(e.detail.y);
+                console.log(e.detail.width);
+                console.log(e.detail.height);
+                console.log(e.detail.rotate);
+                console.log(e.detail.scaleX);
+                console.log(e.detail.scaleY);
+            }
+        });
+        cropper.crop()
+        cropper.reset()
     }
 }
