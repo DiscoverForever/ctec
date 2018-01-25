@@ -36,6 +36,7 @@
             "fightWarnLimit": "打架预警预警值",
             "abnormalActionWarnLimit": "异常动作预警预警值",
             "filterType": "筛选",
+            "perimeterProtectRegion": "周界防护区域",
             "alarmRegion": "预警区域",
             "alarmHistory": "报警历史"
         }
