@@ -2,9 +2,9 @@
     "ctecApp": {
         "DeviceStatus" : {
             "null": "",
-            "RUNNING": "RUNNING",
-            "STOP": "STOP",
-            "OVERHAULING": "OVERHAULING"
+            "RUNNING": "运行中",
+            "STOP": "已停止",
+            "OVERHAULING": "检修中"
         }
     }
 }

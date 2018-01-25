@@ -2,8 +2,8 @@
     "ctecApp": {
         "AnalysisStatus" : {
             "null": "",
-            "ON_ANALYSIS": "ON_ANALYSIS",
-            "ON_PAUSE": "ON_PAUSE"
+            "ON_ANALYSIS": "分析中",
+            "ON_PAUSE": "暂停中"
         }
     }
 }

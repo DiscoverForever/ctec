@@ -2,8 +2,8 @@
     "ctecApp": {
         "VideoType" : {
             "null": "",
-            "LOCAL": "LOCAL",
-            "REALTIME": "REALTIME"
+            "LOCAL": "本地",
+            "REALTIME": "实时"
         }
     }
 }

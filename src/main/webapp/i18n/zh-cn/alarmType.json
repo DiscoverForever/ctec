@@ -2,12 +2,12 @@
     "ctecApp": {
         "AlarmType" : {
             "null": "",
-            "FAST_RUN_WARN": "FAST_RUN_WARN",
-            "PEOPLE_COUNT_LIMIT_WARN": "PEOPLE_COUNT_LIMIT_WARN",
-            "CROWDS_GATHER_WARN": "CROWDS_GATHER_WARN",
-            "VIGOROUSLY_WAVED_WARN": "VIGOROUSLY_WAVED_WARN",
-            "FIGHT_WARN": "FIGHT_WARN",
-            "ABNORMAL_ACTION_WARN": "ABNORMAL_ACTION_WARN"
+            "FAST_RUN_WARN": "快速奔跑预警",
+            "PEOPLE_COUNT_LIMIT_WARN": "人数超限",
+            "CROWDS_GATHER_WARN": "人群聚集",
+            "VIGOROUSLY_WAVED_WARN": "剧烈挥手预警",
+            "FIGHT_WARN": "打架预警",
+            "ABNORMAL_ACTION_WARN": "异常动作预警"
         }
     }
 }

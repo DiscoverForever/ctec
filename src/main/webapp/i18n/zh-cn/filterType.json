@@ -2,12 +2,12 @@
     "ctecApp": {
         "FilterType" : {
             "null": "",
-            "HAIRSTYLE": "HAIRSTYLE",
-            "SEX": "SEX",
-            "UPPERWEAR": "UPPERWEAR",
-            "UNDERWEAR": "UNDERWEAR",
-            "CARRY_THING": "CARRY_THING",
-            "SUNGLASS": "SUNGLASS"
+            "HAIRSTYLE": "发型",
+            "SEX": "性别",
+            "UPPERWEAR": "上衣",
+            "UNDERWEAR": "下衣",
+            "CARRY_THING": "携带物品",
+            "SUNGLASS": "墨镜"
         }
     }
 }

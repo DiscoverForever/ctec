@@ -2,9 +2,9 @@
     "ctecApp": {
         "AnalysisType" : {
             "null": "",
-            "BEHAVIOR": "BEHAVIOR",
-            "STRUCTURED": "STRUCTURED",
-            "PERIMETER_PROTECT": "PERIMETER_PROTECT"
+            "BEHAVIOR": "行为分析",
+            "STRUCTURED": "结构化分析",
+            "PERIMETER_PROTECT": "周界防护"
         }
     }
 }

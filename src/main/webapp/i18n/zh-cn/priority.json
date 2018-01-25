@@ -2,9 +2,9 @@
     "ctecApp": {
         "Priority" : {
             "null": "",
-            "HIGHT": "HIGHT",
-            "MIDDLE": "MIDDLE",
-            "LOW": "LOW"
+            "HIGHT": "高",
+            "MIDDLE": "中",
+            "LOW": "低"
         }
     }
 }
