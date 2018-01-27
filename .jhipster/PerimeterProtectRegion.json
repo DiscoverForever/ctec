@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "leftUpX",
+            "javadoc": "左上X",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "leftUpY",
+            "javadoc": "左上Y",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "rightUpX",
+            "javadoc": "右上X",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "rightUpY",
+            "javadoc": "右上Y",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "leftDownX",
+            "javadoc": "左下X",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "leftDownY",
+            "javadoc": "左下Y",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "rightDownX",
+            "javadoc": "右下X",
+            "fieldType": "Float"
+        },
+        {
+            "fieldName": "rightDownY",
+            "javadoc": "右下Y",
+            "fieldType": "Float"
+        }
+    ],
+    "changelogDate": "20180125131920",
+    "entityTableName": "perimeter_protect_region",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "no",
+    "jpaMetamodelFiltering": false
+}

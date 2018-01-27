@@ -1,0 +1,54 @@
+
+<div *ngIf="perimeterProtectRegion">
+    <h2><span jhiTranslate="ctecApp.perimeterProtectRegion.detail.title">Perimeter Protect Region</span> {{perimeterProtectRegion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="ctecApp.perimeterProtectRegion.leftUpX">Left Up X</span></dt>
+        <dd>
+            <span>{{perimeterProtectRegion.leftUpX}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.perimeterProtectRegion.leftUpY">Left Up Y</span></dt>
+        <dd>
+            <span>{{perimeterProtectRegion.leftUpY}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.perimeterProtectRegion.rightUpX">Right Up X</span></dt>
+        <dd>
+            <span>{{perimeterProtectRegion.rightUpX}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.perimeterProtectRegion.rightUpY">Right Up Y</span></dt>
+        <dd>
+            <span>{{perimeterProtectRegion.rightUpY}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.perimeterProtectRegion.leftDownX">Left Down X</span></dt>
+        <dd>
+            <span>{{perimeterProtectRegion.leftDownX}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.perimeterProtectRegion.leftDownY">Left Down Y</span></dt>
+        <dd>
+            <span>{{perimeterProtectRegion.leftDownY}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.perimeterProtectRegion.rightDownX">Right Down X</span></dt>
+        <dd>
+            <span>{{perimeterProtectRegion.rightDownX}}</span>
+        </dd>
+        <dt><span jhiTranslate="ctecApp.perimeterProtectRegion.rightDownY">Right Down Y</span></dt>
+        <dd>
+            <span>{{perimeterProtectRegion.rightDownY}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'perimeter-protect-region/'+ perimeterProtectRegion.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

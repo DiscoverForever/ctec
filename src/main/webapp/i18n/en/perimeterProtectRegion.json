@@ -1,0 +1,29 @@
+{
+    "ctecApp": {
+        "perimeterProtectRegion" : {
+            "home": {
+                "title": "Perimeter Protect Regions",
+                "createLabel": "Create a new Perimeter Protect Region",
+                "createOrEditLabel": "Create or edit a Perimeter Protect Region",
+                "search": "Search for Perimeter Protect Region"
+            },
+            "created": "A new Perimeter Protect Region is created with identifier {{ param }}",
+            "updated": "A Perimeter Protect Region is updated with identifier {{ param }}",
+            "deleted": "A Perimeter Protect Region is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Perimeter Protect Region {{ id }}?"
+            },
+            "detail": {
+                "title": "Perimeter Protect Region"
+            },
+            "leftUpX": "Left Up X",
+            "leftUpY": "Left Up Y",
+            "rightUpX": "Right Up X",
+            "rightUpY": "Right Up Y",
+            "leftDownX": "Left Down X",
+            "leftDownY": "Left Down Y",
+            "rightDownX": "Right Down X",
+            "rightDownY": "Right Down Y"
+        }
+    }
+}
