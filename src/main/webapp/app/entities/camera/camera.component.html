@@ -1,9 +1,10 @@
 <div>
     <h2>
         <span jhiTranslate="ctecApp.camera.home.title">Cameras</span>
-        <button class="btn btn-primary float-right jh-create-entity create-camera" [routerLink]="['/', { outlets: { popup: ['camera-new'] } }]">
+        <button class="btn btn-primary float-right jh-create-entity create-camera"
+                [routerLink]="['/', { outlets: { popup: ['camera-new'] } }]">
             <span class="fa fa-plus"></span>
-            <span class="hidden-sm-down"  jhiTranslate="ctecApp.camera.home.createLabel">
+            <span class="hidden-sm-down" jhiTranslate="ctecApp.camera.home.createLabel">
             Create new Camera
             </span>
         </button>
@@ -13,7 +14,8 @@
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
-                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'ctecApp.camera.home.search' | translate }}">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch"
+                           name="currentSearch" placeholder="{{ 'ctecApp.camera.home.search' | translate }}">
                     <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
                         <span class="fa fa-search"></span>
                     </button>
@@ -29,30 +31,55 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="name"><span jhiTranslate="ctecApp.camera.name">Name</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="cameraID"><span jhiTranslate="ctecApp.camera.cameraID">Camera ID</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="cameraIP"><span jhiTranslate="ctecApp.camera.cameraIP">Camera IP</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="belongServer"><span jhiTranslate="ctecApp.camera.belongServer">Belong Server</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="belongChannel"><span jhiTranslate="ctecApp.camera.belongChannel">Belong Channel</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="collectStandards"><span jhiTranslate="ctecApp.camera.collectStandards">Collect Standards</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="deviceStatus"><span jhiTranslate="ctecApp.camera.deviceStatus">Device Status</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="fastRunWarn"><span jhiTranslate="ctecApp.camera.fastRunWarn">Fast Run Warn</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="peopleCountLimitWarn"><span jhiTranslate="ctecApp.camera.peopleCountLimitWarn">People Count Limit Warn</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="crowdsGatherWarn"><span jhiTranslate="ctecApp.camera.crowdsGatherWarn">Crowds Gather Warn</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="vigorouslyWavedWarn"><span jhiTranslate="ctecApp.camera.vigorouslyWavedWarn">Vigorously Waved Warn</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="fightWarn"><span jhiTranslate="ctecApp.camera.fightWarn">Fight Warn</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="abnormalActionWarn"><span jhiTranslate="ctecApp.camera.abnormalActionWarn">Abnormal Action Warn</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="fastRunWarnLimit"><span jhiTranslate="ctecApp.camera.fastRunWarnLimit">Fast Run Warn Limit</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="peopleCountWarnLimit"><span jhiTranslate="ctecApp.camera.peopleCountWarnLimit">People Count Warn Limit</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="crowdsGatherWarnLimit"><span jhiTranslate="ctecApp.camera.crowdsGatherWarnLimit">Crowds Gather Warn Limit</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="vigorouslyWavedWarnLimit"><span jhiTranslate="ctecApp.camera.vigorouslyWavedWarnLimit">Vigorously Waved Warn Limit</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="fightWarnLimit"><span jhiTranslate="ctecApp.camera.fightWarnLimit">Fight Warn Limit</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="abnormalActionWarnLimit"><span jhiTranslate="ctecApp.camera.abnormalActionWarnLimit">Abnormal Action Warn Limit</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="filterType"><span jhiTranslate="ctecApp.camera.filterType">Filter Type</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="alarmRegion.id"><span jhiTranslate="ctecApp.camera.alarmRegion">Alarm Region</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="perimeterProtectRegion.id"><span jhiTranslate="ctecApp.camera.perimeterProtectRegion">Perimeter Protect Region</span> <span class="fa fa-sort"></span></th>
-            <th></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="name"><span jhiTranslate="ctecApp.camera.name">Name</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="cameraID"><span jhiTranslate="ctecApp.camera.cameraID">Camera ID</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="cameraIP"><span jhiTranslate="ctecApp.camera.cameraIP">Camera IP</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="belongServer"><span jhiTranslate="ctecApp.camera.belongServer">Belong Server</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="belongChannel"><span jhiTranslate="ctecApp.camera.belongChannel">Belong Channel</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="collectStandards"><span
+                    jhiTranslate="ctecApp.camera.collectStandards">Collect Standards</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="deviceStatus"><span jhiTranslate="ctecApp.camera.deviceStatus">Device Status</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="fastRunWarn"><span jhiTranslate="ctecApp.camera.fastRunWarn">Fast Run Warn</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="peopleCountLimitWarn"><span jhiTranslate="ctecApp.camera.peopleCountLimitWarn">People Count Limit Warn</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="crowdsGatherWarn"><span
+                    jhiTranslate="ctecApp.camera.crowdsGatherWarn">Crowds Gather Warn</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="vigorouslyWavedWarn"><span jhiTranslate="ctecApp.camera.vigorouslyWavedWarn">Vigorously Waved Warn</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="fightWarn"><span jhiTranslate="ctecApp.camera.fightWarn">Fight Warn</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="abnormalActionWarn"><span jhiTranslate="ctecApp.camera.abnormalActionWarn">Abnormal Action Warn</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="fastRunWarnLimit"><span jhiTranslate="ctecApp.camera.fastRunWarnLimit">Fast Run Warn Limit</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="peopleCountWarnLimit"><span jhiTranslate="ctecApp.camera.peopleCountWarnLimit">People Count Warn Limit</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="crowdsGatherWarnLimit"><span jhiTranslate="ctecApp.camera.crowdsGatherWarnLimit">Crowds Gather Warn Limit</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="vigorouslyWavedWarnLimit"><span jhiTranslate="ctecApp.camera.vigorouslyWavedWarnLimit">Vigorously Waved Warn Limit</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="fightWarnLimit"><span
+                    jhiTranslate="ctecApp.camera.fightWarnLimit">Fight Warn Limit</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="abnormalActionWarnLimit"><span jhiTranslate="ctecApp.camera.abnormalActionWarnLimit">Abnormal Action Warn Limit</span>
+                    <span class="fa fa-sort"></span></th>
+                <th jhiSortBy="filterType"><span jhiTranslate="ctecApp.camera.filterType">Filter Type</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="alarmRegion.id"><span jhiTranslate="ctecApp.camera.alarmRegion">Alarm Region</span> <span
+                    class="fa fa-sort"></span></th>
+                <th jhiSortBy="perimeterProtectRegion.id"><span jhiTranslate="ctecApp.camera.perimeterProtectRegion">Perimeter Protect Region</span>
+                    <span class="fa fa-sort"></span></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -80,12 +107,12 @@
                 <td jhiTranslate="{{'ctecApp.FilterType.' + camera.filterType}}">{{camera.filterType}}</td>
                 <td>
                     <div *ngIf="camera.alarmRegion">
-                        <a [routerLink]="['../alarm-region', camera.alarmRegion?.id ]" >{{camera.alarmRegion?.id}}</a>
+                        <a [routerLink]="['../alarm-region', camera.alarmRegion?.id ]">{{camera.alarmRegion?.id}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="camera.perimeterProtectRegion">
-                        <a [routerLink]="['../perimeter-protect-region', camera.perimeterProtectRegion?.id ]" >{{camera.perimeterProtectRegion?.id}}</a>
+                        <a [routerLink]="['../perimeter-protect-region', camera.perimeterProtectRegion?.id ]">{{camera.perimeterProtectRegion?.id}}</a>
                     </div>
                 </td>
                 <td class="text-right">
@@ -120,15 +147,22 @@
     </div>
     <div class="card-list-wrapper">
         <div class="card" *ngFor="let camera of cameras ;trackBy: trackId">
-            <div class="video-wrapper" [ngClass]="{'full-screen': fullScreen && currentFullScrentVideoId === camera.id}">
+            <div class="video-wrapper">
                 <canvas></canvas>
-                <i class="fa fa-expand fa-1x" (click)="fullScreen = true; currentFullScrentVideoId = camera.id" *ngIf="!fullScreen"></i>
-                <i class="fa fa-compress fa-2x" (click)="fullScreen = false" *ngIf="fullScreen"></i>
-                <label>是否处理</label>
-                <input type="checkbox">
+                <div class="mask-video">
+                    <img src="../../../content/images/bg-transprant.png" (click)="currentCropperId = camera.id;cropperActionsVisiable = true; initCropper($event.currentTarget)">
+                    <div class="actions-wrapper" *ngIf="cropperActionsVisiable && currentCropperId === camera.id">
+                        <button (click)="setAlarmRegion()">设置预警区域</button>
+                        <button (click)="setPerimeterRegion()">设置周界区域</button>
+                        <button (click)="cancleCropper()">取消</button>
+                    </div>
+                </div>
+                <i class="fa fa-expand fa-1x"
+                   (click)="requestFullscreen($event.currentTarget.parentNode);fullScreen = true"
+                   *ngIf="!fullScreen"></i>
+                <i class="fa fa-compress fa-2x" (click)="cancleFullscreen();fullScreen = false" *ngIf="fullScreen"></i>
             </div>
-            <h2>摄像头名称:{{camera.name}}</h2>
-            <h3>摄像头IP:{{camera.cameraIP}}</h3>
+            <h5>ID: {{camera.cameraID}} IP:{{camera.cameraIP}}</h5>
             <div class="btn-group flex-btn-group-container">
                 <button type="submit"
                         [routerLink]="['../camera', camera.id ]"
@@ -167,10 +201,12 @@
     </div>
     <div *ngIf="cameras && cameras.length">
         <div class="row justify-content-center">
-            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            <jhi-item-count [page]="page" [total]="queryCount" [maxSize]="5"
+                            [itemsPerPage]="itemsPerPage"></jhi-item-count>
         </div>
         <div class="row justify-content-center">
-            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5"
+                            [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
         </div>
     </div>
 </div>
