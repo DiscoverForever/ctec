@@ -26,7 +26,8 @@ module.exports = (options) => ({
                     caseSensitive: true,
                     removeAttributeQuotes:false,
                     minifyJS:false,
-                    minifyCSS:false
+                    minifyCSS:false,
+                    attrs: ['audio:src']
                 },
                 exclude: ['./src/main/webapp/index.html']
             },
