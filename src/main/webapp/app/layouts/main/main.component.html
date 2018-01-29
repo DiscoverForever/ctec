@@ -9,3 +9,55 @@
     </div>
     <jhi-footer></jhi-footer>
 </div>
+<ng-template #alarmModal let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title">警报！！！</h4>
+        <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="img-wrapper">
+            <img [src]="'data:' + alarmHistory.imageContentType + ';base64,' + alarmHistory.image" style="max-height: 300px;" alt="alarmHistory image"/>
+        </div>
+        <h5>
+            <span jhiTranslate="ctecApp.alarmHistory.alarmType"></span>:
+            <span jhiTranslate="{{'ctecApp.AlarmType.' + alarmHistory.alarmType}}">{{ alarmHistory.alarmType }}</span></h5>
+        <h5>
+            <span jhiTranslate="ctecApp.alarmHistory.time"></span>:
+            <span>{{ alarmHistory.time | date:'medium' }}</span></h5>
+        <h5>
+            <span jhiTranslate="ctecApp.camera.name"></span>:
+            <span>{{ alarmHistory.camera.name }}</span>
+        </h5>
+        <h5>
+            <span jhiTranslate="ctecApp.camera.cameraID"></span>:
+            <span>{{ alarmHistory.camera.cameraID }}</span>
+        </h5>
+        <h5>
+            <span jhiTranslate="ctecApp.camera.cameraIP"></span>:
+            <span>{{ alarmHistory.camera.cameraIP }}</span>
+        </h5>
+        <h5>
+            <span jhiTranslate="ctecApp.camera.belongServer"></span>:
+            <span>{{ alarmHistory.camera.belongServer }}</span>
+        </h5>
+        <h5>
+            <span jhiTranslate="ctecApp.camera.belongChannel"></span>:
+            <span>{{ alarmHistory.camera.belongChannel }}</span>
+        </h5>
+        <h5>
+            <span jhiTranslate="ctecApp.camera.collectStandards"></span>:
+            <span>{{ alarmHistory.camera.collectStandards }}</span>
+        </h5>
+        <h5>
+            <span jhiTranslate="ctecApp.camera.deviceStatus"></span>:
+            <span jhiTranslate="{{'ctecApp.DeviceStatus.' + alarmHistory.camera.deviceStatus}}">{{ alarmHistory.camera.deviceStatus }}</span>
+        </h5>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="c('Close click')">Close</button>
+    </div>
+</ng-template>
+

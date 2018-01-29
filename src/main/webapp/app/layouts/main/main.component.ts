@@ -1,17 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { Router, ActivatedRouteSnapshot, NavigationEnd } from '@angular/router';
-
+import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { JhiLanguageHelper, JhiTrackerService } from '../../shared';
+import {AlarmHistory} from "../../entities/alarm-history/alarm-history.model";
 
 @Component({
     selector: 'jhi-main',
     templateUrl: './main.component.html'
 })
 export class JhiMainComponent implements OnInit {
-
+    @ViewChild('alarmModal')
+    alarmModal: ElementRef;
+    alarmHistory: AlarmHistory;
     constructor(
         private jhiLanguageHelper: JhiLanguageHelper,
         private jhiTrackerService: JhiTrackerService,
+        private modalService: NgbModal,
         private router: Router
     ) {}
 
@@ -31,7 +35,13 @@ export class JhiMainComponent implements OnInit {
         });
         this.jhiTrackerService.subscribe('/topic/alarm');
         this.jhiTrackerService.receive().subscribe((message) => {
-            alert(message)
+            console.debug('警报信息', message);
+            this.alarmHistory = message;
+            this.openModal(this.alarmModal);
         });
+    }
+
+    openModal(dialog: ElementRef) {
+        this.modalService.open(dialog, { size: 'lg' }).result;
     }
 }
