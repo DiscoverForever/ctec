@@ -5,6 +5,10 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
 
 import { Camera } from './camera.model';
 import { CameraService } from './camera.service';
+import { AlarmRegion } from '../alarm-region/alarm-region.model';
+import { AlarmRegionService } from '../alarm-region/alarm-region.service';
+import { PerimeterProtectRegionService } from '../perimeter-protect-region/perimeter-protect-region.service';
+import { PerimeterProtectRegion } from '../perimeter-protect-region/perimeter-protect-region.model';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import * as JsMpeg from 'jsmpeg';
 import * as Cropper from "cropperjs";
@@ -42,6 +46,8 @@ export class CameraComponent implements OnInit, OnDestroy {
 
     constructor(
         private cameraService: CameraService,
+        private alarmRegionService: AlarmRegionService,
+        private perimeterProtectRegionService: PerimeterProtectRegionService,
         private parseLinks: JhiParseLinks,
         private jhiAlertService: JhiAlertService,
         private principal: Principal,
@@ -202,11 +208,61 @@ export class CameraComponent implements OnInit, OnDestroy {
             Screenfull.request(el);
         }
     }
-    setAlarmRegion() {
-        console.log(this.cropper.getData())
-    }
-    setPerimeterRegion() {
 
+    /**
+     * 设置预警区域
+     * @param {Camera} camera
+     */
+    setAlarmRegion(camera: Camera) {
+        const position = this.cropper.getData();
+        const alarmRegion = new AlarmRegion();
+        alarmRegion.leftUpX = position.x;
+        alarmRegion.leftUpY = position.y;
+        alarmRegion.rightUpX = position.x + position.width;
+        alarmRegion.rightUpY = position.y;
+        alarmRegion.leftDownX = position.x;
+        alarmRegion.leftDownY = position.y - position.height;
+        alarmRegion.rightDownX = position.x + position.width;
+        alarmRegion.rightDownY = position.y + position.height;
+        if (camera.alarmRegion) {
+            alarmRegion.id = camera.alarmRegion.id;
+            this.alarmRegionService.update(alarmRegion);
+        } else {
+            this.alarmRegionService.create(alarmRegion).subscribe((res: AlarmRegion) => {
+                camera.alarmRegion = res;
+                this.cameraService.update(camera).subscribe();
+            }, (error: Response) => {
+                console.error(error)
+            })
+        }
+    }
+
+    /**
+     * 设置周界防护区域
+     * @param {Camera} camera
+     */
+    setPerimeterRegion(camera: Camera) {
+        const position = this.cropper.getData();
+        const perimeterProtectRegion = new PerimeterProtectRegion();
+        perimeterProtectRegion.leftUpX = position.x;
+        perimeterProtectRegion.leftUpY = position.y;
+        perimeterProtectRegion.rightUpX = position.x + position.width;
+        perimeterProtectRegion.rightUpY = position.y;
+        perimeterProtectRegion.leftDownX = position.x;
+        perimeterProtectRegion.leftDownY = position.y - position.height;
+        perimeterProtectRegion.rightDownX = position.x + position.width;
+        perimeterProtectRegion.rightDownY = position.y + position.height;
+        if (camera.perimeterProtectRegion) {
+            perimeterProtectRegion.id = camera.perimeterProtectRegion.id;
+            this.perimeterProtectRegionService.update(perimeterProtectRegion);
+        } else {
+            this.perimeterProtectRegionService.create(perimeterProtectRegion).subscribe((res: PerimeterProtectRegion) => {
+                camera.perimeterProtectRegion = res;
+                this.cameraService.update(camera).subscribe();
+            }, (error: Response) => {
+                console.error(error)
+            });
+        }
     }
     cancleCropper() {
         this.cropperActionsVisiable = false;

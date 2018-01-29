@@ -152,8 +152,8 @@
                 <div class="mask-video">
                     <img src="../../../content/images/bg-transprant.png" (click)="currentCropperId = camera.id;cropperActionsVisiable = true; initCropper($event.currentTarget)">
                     <div class="actions-wrapper" *ngIf="cropperActionsVisiable && currentCropperId === camera.id">
-                        <button (click)="setAlarmRegion()">设置预警区域</button>
-                        <button (click)="setPerimeterRegion()">设置周界区域</button>
+                        <button (click)="setAlarmRegion(camera)">设置预警区域</button>
+                        <button (click)="setPerimeterRegion(camera)">设置周界区域</button>
                         <button (click)="cancleCropper()">取消</button>
                     </div>
                 </div>
