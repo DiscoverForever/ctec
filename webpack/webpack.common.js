@@ -27,7 +27,7 @@ module.exports = (options) => ({
                     removeAttributeQuotes:false,
                     minifyJS:false,
                     minifyCSS:false,
-                    attrs: ['audio:src']
+                    attrs: ['img:src', 'audio:src']
                 },
                 exclude: ['./src/main/webapp/index.html']
             },
