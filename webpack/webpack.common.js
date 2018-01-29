@@ -32,7 +32,7 @@ module.exports = (options) => ({
                 exclude: ['./src/main/webapp/index.html']
             },
             {
-                test: /\.(jpe?g|png|gif|svg|woff2?|ttf|eot)$/i,
+                test: /\.(jpe?g|png|gif|svg|woff2?|ttf|eot|mp3)$/i,
                 loaders: ['file-loader?hash=sha512&digest=hex&name=content/[hash].[ext]']
             },
             {
