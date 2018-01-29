@@ -203,7 +203,7 @@ export class CameraComponent implements OnInit, OnDestroy {
         }
     }
     setAlarmRegion() {
-
+        console.log(this.cropper.getData())
     }
     setPerimeterRegion() {
 
