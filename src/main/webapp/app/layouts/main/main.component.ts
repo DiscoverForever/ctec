@@ -55,6 +55,6 @@ export class JhiMainComponent implements OnInit {
     }
 
     stopAlarmAudio() {
-        this.alarmAudio.nativeElement.stop();
+        this.alarmAudio.nativeElement.pause();
     }
 }
