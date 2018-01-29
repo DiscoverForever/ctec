@@ -11,6 +11,7 @@ import {AlarmHistory} from "../../entities/alarm-history/alarm-history.model";
 export class JhiMainComponent implements OnInit {
     @ViewChild('alarmModal')
     alarmModal: ElementRef;
+    alarmAudio: any;
     alarmHistory: AlarmHistory;
     constructor(
         private jhiLanguageHelper: JhiLanguageHelper,
@@ -37,11 +38,24 @@ export class JhiMainComponent implements OnInit {
         this.jhiTrackerService.receive().subscribe((message) => {
             console.debug('警报信息', message);
             this.alarmHistory = message;
-            this.openModal(this.alarmModal);
+            this.playAlarmAudio();
+            this.openModal(this.alarmModal).then((result) => {
+                this.stopAlarmAudio();
+            });
         });
     }
 
     openModal(dialog: ElementRef) {
-        this.modalService.open(dialog, { size: 'lg' }).result;
+        return this.modalService.open(dialog, { size: 'lg' }).result;
+    }
+
+    playAlarmAudio() {
+        if (!this.alarmAudio) this.alarmAudio = new Audio();
+        this.alarmAudio.src = '../../../content/audios/alarm.mp3';
+        this.alarmAudio.play();
+    }
+
+    stopAlarmAudio() {
+        this.alarmAudio.stop();
     }
 }
