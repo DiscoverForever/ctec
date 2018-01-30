@@ -7,6 +7,12 @@
             Create new Alarm History
             </span>
         </button>
+        <button class="btn btn-primary float-right jh-create-entity create-alarm-history mr-1" (click)="search();currentAlarmType=null;">
+            <span class="fa fa-search"></span>
+            <span class="hidden-sm-down">
+            搜索所有
+            </span>
+        </button>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row">
@@ -24,6 +30,44 @@
             </form>
         </div>
     </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="form-control-label" for="start_time">开始时间</label>
+                    <input id="start_time" type="datetime-local" ([ngModel])="startTime" class="form-control" name="time"/>
+                </div>
+                <div class="col-sm-6">
+                    <label class="form-control-label" for="end_time">结束时间</label>
+                    <input id="end_time" type="datetime-local" ([ngModel])="endTime" class="form-control" name="time"/>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="form-control-label" jhiTranslate="ctecApp.alarmHistory.alarmType" for="field_alarmType">Alarm Type</label>
+                <select class="form-control" name="alarmType"  [(ngModel)]="currentAlarmType" (change)="search(currentAlarmType)" id="field_alarmType" >
+                    <option value="FAST_RUN_WARN">{{'ctecApp.AlarmType.FAST_RUN_WARN' | translate}}</option>
+                    <option value="PEOPLE_COUNT_LIMIT_WARN">{{'ctecApp.AlarmType.PEOPLE_COUNT_LIMIT_WARN' | translate}}</option>
+                    <option value="CROWDS_GATHER_WARN">{{'ctecApp.AlarmType.CROWDS_GATHER_WARN' | translate}}</option>
+                    <option value="VIGOROUSLY_WAVED_WARN">{{'ctecApp.AlarmType.VIGOROUSLY_WAVED_WARN' | translate}}</option>
+                    <option value="FIGHT_WARN">{{'ctecApp.AlarmType.FIGHT_WARN' | translate}}</option>
+                    <option value="ABNORMAL_ACTION_WARN">{{'ctecApp.AlarmType.ABNORMAL_ACTION_WARN' | translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label class="form-control-label m-0" for="field_alarmRegion">报警地点</label>
+                <div class="input-group mt-2">
+                    <input class="form-control" type="text" id="field_alarmRegion"/>
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
     <br/>
     <div class="table-responsive" *ngIf="alarmHistories">
         <table class="table table-striped">
@@ -33,7 +77,7 @@
             <th jhiSortBy="image"><span jhiTranslate="ctecApp.alarmHistory.image">Image</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="alarmType"><span jhiTranslate="ctecApp.alarmHistory.alarmType">Alarm Type</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="time"><span jhiTranslate="ctecApp.alarmHistory.time">Time</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="camera.id"><span jhiTranslate="ctecApp.alarmHistory.camera">Camera</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="camera.id"><span jhiTranslate="ctecApp.camera.cameraID">Camera ID</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -50,7 +94,7 @@
                 <td>{{alarmHistory.time | date:'medium'}}</td>
                 <td>
                     <div *ngIf="alarmHistory.camera">
-                        <a [routerLink]="['../camera', alarmHistory.camera?.id ]" >{{alarmHistory.camera?.id}}</a>
+                        <a [routerLink]="['../camera', alarmHistory.camera?.id ]" >{{alarmHistory.camera?.cameraID}}</a>
                     </div>
                 </td>
                 <td class="text-right">

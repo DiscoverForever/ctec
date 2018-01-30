@@ -3,9 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiParseLinks, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 
-import { AlarmHistory } from './alarm-history.model';
+import {AlarmHistory, AlarmType} from './alarm-history.model';
 import { AlarmHistoryService } from './alarm-history.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
+import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'jhi-alarm-history',
@@ -19,6 +20,9 @@ currentAccount: any;
     success: any;
     eventSubscriber: Subscription;
     currentSearch: string;
+    startTime: Date;
+    endTime: Date;
+    currentAlarmType: AlarmType;
     routeData: any;
     links: any;
     totalItems: any;
@@ -37,7 +41,8 @@ currentAccount: any;
         private activatedRoute: ActivatedRoute,
         private dataUtils: JhiDataUtils,
         private router: Router,
-        private eventManager: JhiEventManager
+        private eventManager: JhiEventManager,
+        private calendar: NgbCalendar
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
@@ -154,5 +159,16 @@ currentAccount: any;
     }
     private onError(error) {
         this.jhiAlertService.error(error.message, null, null);
+    }
+
+    onDateChange(date: NgbDateStruct) {
+        // if (!this.fromDate && !this.toDate) {
+        //     this.fromDate = date;
+        // } else if (this.fromDate && !this.toDate && after(date, this.fromDate)) {
+        //     this.toDate = date;
+        // } else {
+        //     this.toDate = null;
+        //     this.fromDate = date;
+        // }
     }
 }
