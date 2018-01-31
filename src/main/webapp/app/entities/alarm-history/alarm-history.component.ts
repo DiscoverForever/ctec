@@ -6,7 +6,6 @@ import { JhiEventManager, JhiParseLinks, JhiAlertService, JhiDataUtils } from 'n
 import {AlarmHistory, AlarmType} from './alarm-history.model';
 import { AlarmHistoryService } from './alarm-history.service';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
-import { NgbCalendar, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
     selector: 'jhi-alarm-history',
@@ -23,6 +22,7 @@ currentAccount: any;
     startTime: Date;
     endTime: Date;
     currentAlarmType: AlarmType;
+    currentCameraID: string;
     routeData: any;
     links: any;
     totalItems: any;
@@ -41,8 +41,7 @@ currentAccount: any;
         private activatedRoute: ActivatedRoute,
         private dataUtils: JhiDataUtils,
         private router: Router,
-        private eventManager: JhiEventManager,
-        private calendar: NgbCalendar
+        private eventManager: JhiEventManager
     ) {
         this.itemsPerPage = ITEMS_PER_PAGE;
         this.routeData = this.activatedRoute.data.subscribe((data) => {
@@ -150,6 +149,20 @@ currentAccount: any;
         return result;
     }
 
+    customSearch() {
+        const queryStr = `startTime:>=${this.startTime}+endTime:<=${this.endTime}+alarmType:${this.currentAlarmType}+camera.cameraID:${this.currentCameraID}`;
+        this.search(queryStr);
+    }
+
+    resetSearch() {
+        this.currentSearch = null;
+        this.currentCameraID = null;
+        this.startTime = null;
+        this.endTime = null;
+        this.currentAlarmType = null;
+        this.loadAll();
+    }
+
     private onSuccess(data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
@@ -161,14 +174,4 @@ currentAccount: any;
         this.jhiAlertService.error(error.message, null, null);
     }
 
-    onDateChange(date: NgbDateStruct) {
-        // if (!this.fromDate && !this.toDate) {
-        //     this.fromDate = date;
-        // } else if (this.fromDate && !this.toDate && after(date, this.fromDate)) {
-        //     this.toDate = date;
-        // } else {
-        //     this.toDate = null;
-        //     this.fromDate = date;
-        // }
-    }
 }

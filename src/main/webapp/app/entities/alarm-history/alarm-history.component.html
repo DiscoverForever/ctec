@@ -7,12 +7,6 @@
             Create new Alarm History
             </span>
         </button>
-        <button class="btn btn-primary float-right jh-create-entity create-alarm-history mr-1" (click)="loadAll();currentAlarmType=null;startTime=null;endTime=null;">
-            <span class="fa fa-search"></span>
-            <span class="hidden-sm-down">
-            搜索所有
-            </span>
-        </button>
     </h2>
     <jhi-alert></jhi-alert>
     <div class="row" *ngIf="false">
@@ -43,10 +37,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="form-group">
                 <label class="form-control-label" jhiTranslate="ctecApp.alarmHistory.alarmType" for="field_alarmType">Alarm Type</label>
-                <select class="form-control" name="alarmType"  [(ngModel)]="currentAlarmType" (change)="search(currentAlarmType)" id="field_alarmType" >
+                <select class="form-control" name="alarmType"  [(ngModel)]="currentAlarmType" id="field_alarmType" >
                     <option value="FAST_RUN_WARN">{{'ctecApp.AlarmType.FAST_RUN_WARN' | translate}}</option>
                     <option value="PEOPLE_COUNT_LIMIT_WARN">{{'ctecApp.AlarmType.PEOPLE_COUNT_LIMIT_WARN' | translate}}</option>
                     <option value="CROWDS_GATHER_WARN">{{'ctecApp.AlarmType.CROWDS_GATHER_WARN' | translate}}</option>
@@ -56,15 +50,27 @@
                 </select>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-3">
             <div class="form-group">
                 <label class="form-control-label m-0" for="field_alarmRegion">报警地点</label>
                 <div class="input-group mt-2">
-                    <input class="form-control" type="text" id="field_alarmRegion"/>
-                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
-                        <span class="fa fa-search"></span>
-                    </button>
+                    <input class="form-control" type="text" id="field_alarmRegion" [(ngModel)]="currentCameraID"/>
+                    <!--<button class="input-group-addon btn btn-info" (click)="search('camera.cameraID:' + currentCameraID)">-->
+                        <!--<span class="fa fa-search"></span>-->
+                    <!--</button>-->
                 </div>
+            </div>
+        </div>
+        <div class="col-sm-2">
+            <div class="form-group">
+                <button class="btn btn-primary jh-create-entity create-alarm-history mr-1 mt-4" (click)="customSearch()">
+                    <span class="fa fa-search"></span>
+                    <span class="hidden-sm-down">搜索</span>
+                </button>
+                <button class="btn btn-warning jh-create-entity create-alarm-history mr-1 mt-4" (click)="resetSearch();">
+                    <span class="fa fa-trash-o"></span>
+                    <span class="hidden-sm-down">重置</span>
+                </button>
             </div>
         </div>
     </div>
