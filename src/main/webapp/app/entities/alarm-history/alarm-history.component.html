@@ -7,7 +7,7 @@
             Create new Alarm History
             </span>
         </button>
-        <button class="btn btn-primary float-right jh-create-entity create-alarm-history mr-1" (click)="search();currentAlarmType=null;">
+        <button class="btn btn-primary float-right jh-create-entity create-alarm-history mr-1" (click)="loadAll();currentAlarmType=null;startTime=null;endTime=null;">
             <span class="fa fa-search"></span>
             <span class="hidden-sm-down">
             搜索所有
@@ -15,7 +15,7 @@
         </button>
     </h2>
     <jhi-alert></jhi-alert>
-    <div class="row">
+    <div class="row" *ngIf="false">
         <div class="col-sm-12">
             <form name="searchForm" class="form-inline">
                 <div class="input-group w-100 mt-3">
