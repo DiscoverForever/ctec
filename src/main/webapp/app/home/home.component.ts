@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { JhiEventManager } from 'ng-jhipster';
 
@@ -16,7 +16,8 @@ import * as Echars from 'echarts';
 export class HomeComponent implements OnInit {
     account: Account;
     modalRef: NgbModalRef;
-
+    @ViewChild('echartsWrapper')
+    echartsWrapper: ElementRef
     constructor(
         private principal: Principal,
         private loginModalService: LoginModalService,
@@ -25,7 +26,6 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.initCropper();
         this.initEcharts();
         this.principal.identity().then((account) => {
             this.account = account;
@@ -49,90 +49,77 @@ export class HomeComponent implements OnInit {
         this.modalRef = this.loginModalService.open();
     }
 
-    initCropper() {
-        const img = <HTMLImageElement>document.getElementById('image');
-        const cropper = new Cropper(img, {
-            viewMode: 3,
-            guides: true,
-            background: true,
-            autoCrop: true,
-            checkCrossOrigin: false,
-            crop: function(e) {
-                console.log(e.detail.x);
-                console.log(e.detail.y);
-                console.log(e.detail.width);
-                console.log(e.detail.height);
-                console.log(e.detail.rotate);
-                console.log(e.detail.scaleX);
-                console.log(e.detail.scaleY);
-            }
-        });
-    }
-
+    /**
+     * 初始化echarts
+     */
     initEcharts() {
-        // 基于准备好的dom，初始化echarts实例
-        const myChart = Echars.init(<HTMLDivElement>document.getElementById('main'));
+        const myChart = Echars.init(this.echartsWrapper.nativeElement);
 
-        // 指定图表的配置项和数据
-        // const option = {
-        //     title: {
-        //         text: 'ECharts 入门示例'
-        //     },
-        //     tooltip: {},
-        //     legend: {
-        //         data:['销量']
-        //     },
-        //     xAxis: {
-        //         data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
-        //     },
-        //     yAxis: {},
-        //     series: [{
-        //         name: '销量',
-        //         type: 'bar',
-        //         data: [5, 20, 36, 10, 10, 20]
-        //     }]
-        // };
         const option = {
             tooltip: {
-                trigger: 'item',
-                formatter: "{a} <br/>{b}: {c} ({d}%)"
+                trigger: 'axis',
+                axisPointer: {
+                    type: 'cross',
+                    crossStyle: {
+                        color: '#999'
+                    }
+                }
+            },
+            toolbox: {
+                feature: {
+                    dataView: {show: true, readOnly: false},
+                    magicType: {show: true, type: ['line', 'bar']},
+                    restore: {show: true},
+                    saveAsImage: {show: true}
+                }
             },
             legend: {
-                orient: 'vertical',
-                x: 'left',
-                data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                data:['快速运动预警','人数超限预警','人群聚集预警','剧烈挥手预警','打架预警','异常动作预警']
             },
+            xAxis: [
+                {
+                    type: 'category',
+                    data: Array.apply(null, Array(51)).map((item, index) => `${index + 1}周`),
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                }
+            ],
+            yAxis: [
+                {
+                    type: 'value',
+                }
+            ],
             series: [
                 {
-                    name:'访问来源',
-                    type:'pie',
-                    radius: ['50%', '70%'],
-                    avoidLabelOverlap: false,
-                    label: {
-                        normal: {
-                            show: false,
-                            position: 'center'
-                        },
-                        emphasis: {
-                            show: true,
-                            textStyle: {
-                                fontSize: '30',
-                                fontWeight: 'bold'
-                            }
-                        }
-                    },
-                    labelLine: {
-                        normal: {
-                            show: false
-                        }
-                    },
-                    data:[
-                        {value:335, name:'直接访问'},
-                        {value:310, name:'邮件营销'},
-                        {value:234, name:'联盟广告'},
-                        {value:135, name:'视频广告'},
-                        {value:1548, name:'搜索引擎'}
-                    ]
+                    name:'快速运动预警',
+                    type:'bar',
+                    data:Array.apply(null, Array(51)).map(() => Math.random())
+                },
+                {
+                    name:'人数超限预警',
+                    type:'bar',
+                    data:Array.apply(null, Array(51)).map(() => Math.random())
+                },
+                {
+                    name:'人群聚集预警',
+                    type:'bar',
+                    data:Array.apply(null, Array(51)).map(() => Math.random())
+                },
+                {
+                    name:'剧烈挥手预警',
+                    type:'bar',
+                    data:Array.apply(null, Array(51)).map(() => Math.random())
+                },
+                {
+                    name:'打架预警',
+                    type:'bar',
+                    data:Array.apply(null, Array(51)).map(() => Math.random())
+                },
+                {
+                    name:'异常动作预警',
+                    type:'bar',
+                    data:Array.apply(null, Array(51)).map(() => Math.random())
                 }
             ]
         };
