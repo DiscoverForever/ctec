@@ -150,8 +150,15 @@ currentAccount: any;
     }
 
     customSearch() {
-        const queryStr = `startTime:>=${this.startTime}+endTime:<=${this.endTime}+alarmType:${this.currentAlarmType}+camera.cameraID:${this.currentCameraID}`;
-        this.search(queryStr);
+        const startTime = this.startTime ? `+time:>${new Date(this.startTime).getTime()}` : '';
+        const endTime = this.endTime ? `+time:<${new Date(this.endTime).getTime()}` : '';
+        const alarmType = this.currentAlarmType ? `+alarmType:${this.currentAlarmType}` : '';
+        const cameraID = this.currentCameraID ? `+cameraID:${this.currentCameraID}` : '';
+        if (endTime < startTime) {
+            alert('结束时间不能大于开始时间!');
+            return;
+        }
+        this.search(startTime + endTime + alarmType + cameraID);
     }
 
     resetSearch() {
