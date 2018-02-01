@@ -78,7 +78,7 @@ export class HomeComponent implements OnInit {
 
         const option = {
             title: {
-                text: '报警次数统计(按周)',
+                text: '周报警次数统计',
                 subtext: '',
                 x: 'center'
             },
@@ -160,12 +160,15 @@ export class HomeComponent implements OnInit {
      * 初始化饼状图
      */
     initPieEcharts() {
+        let cameraIDs = this.alarmHistories.map((alarmHistory) => alarmHistory.camera['cameraID']);
+        const set = new Set(cameraIDs);
+        cameraIDs = Array.from(set);
         const myChart = Echars.init(this.pieEchartsWrapper.nativeElement);
 
         const option = {
             title: {
-                text: '按报警次数统计(按区域)',
-                subtext: '纯属虚构',
+                text: '区域报警次数统计',
+                subtext: '',
                 x: 'center'
             },
             tooltip: {
@@ -175,22 +178,27 @@ export class HomeComponent implements OnInit {
             legend: {
                 orient: 'vertical',
                 left: 'left',
-                data: ['快速运动预警', '人数超限预警', '人群聚集预警', '剧烈挥手预警', '打架预警', '异常动作预警']
+                data: cameraIDs
             },
             series: [
                 {
-                    name: '访问来源',
+                    name: '报警区域',
                     type: 'pie',
                     radius: '55%',
                     center: ['50%', '60%'],
-                    data: [
-                        {value: this.getPieEchartsOption('FAST_RUN_WARN'), name: '快速运动预警'},
-                        {value: this.getPieEchartsOption('PEOPLE_COUNT_LIMIT_WARN'), name: '人数超限预警'},
-                        {value: this.getPieEchartsOption('CROWDS_GATHER_WARN'), name: '人群聚集预警'},
-                        {value: this.getPieEchartsOption('VIGOROUSLY_WAVED_WARN'), name: '剧烈挥手预警'},
-                        {value: this.getPieEchartsOption('FIGHT_WARN'), name: '打架预警'},
-                        {value: this.getPieEchartsOption('ABNORMAL_ACTION_WARN'), name: '异常动作预警'}
-                    ],
+                    data: cameraIDs.map((cameraID) => {
+                        let count = 0;
+                        this.alarmHistories.forEach((item) => cameraID === item.camera['cameraID'] ? count ++ : '');
+                        return { name: cameraID, value: count};
+                    }),
+                    //     [
+                    //     {value: this.getPieEchartsOption('FAST_RUN_WARN'), name: '快速运动预警'},
+                    //     {value: this.getPieEchartsOption('PEOPLE_COUNT_LIMIT_WARN'), name: '人数超限预警'},
+                    //     {value: this.getPieEchartsOption('CROWDS_GATHER_WARN'), name: '人群聚集预警'},
+                    //     {value: this.getPieEchartsOption('VIGOROUSLY_WAVED_WARN'), name: '剧烈挥手预警'},
+                    //     {value: this.getPieEchartsOption('FIGHT_WARN'), name: '打架预警'},
+                    //     {value: this.getPieEchartsOption('ABNORMAL_ACTION_WARN'), name: '异常动作预警'}
+                    // ],
                     itemStyle: {
                         emphasis: {
                             shadowBlur: 10,
@@ -201,7 +209,7 @@ export class HomeComponent implements OnInit {
                 }
             ]
         };
-
+        console.log(option)
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option);
     }
