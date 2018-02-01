@@ -155,7 +155,7 @@ currentAccount: any;
         const alarmType = this.currentAlarmType ? `+alarmType:${this.currentAlarmType}` : '';
         const cameraID = this.currentCameraID ? `+cameraID:${this.currentCameraID}` : '';
         if (endTime < startTime) {
-            alert('结束时间不能大于开始时间!');
+            alert('结束时间不能小于开始时间!');
             return;
         }
         this.search(startTime + endTime + alarmType + cameraID);
