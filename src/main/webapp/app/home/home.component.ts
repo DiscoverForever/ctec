@@ -38,6 +38,9 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
+        if (!this.account) {
+            this.login();
+        }
         this.currentYear = new Date().getFullYear();
         this.getAlarmHistoryData();
         this.principal.identity().then((account) => {
