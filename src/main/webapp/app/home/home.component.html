@@ -1,3 +1,16 @@
-<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
-<div style="width: 100%;height: 600px;" *ngIf="account" #lineEchartsWrapper></div>
-<div style="width: 100%;height: 600px;" *ngIf="account" #pieEchartsWrapper></div>
+<div [ngSwitch]="isAuthenticated()">
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div style="width: 100%;height: 600px;" *ngSwitchCase="true" #lineEchartsWrapper></div>
+    <div style="width: 100%;height: 600px;" *ngSwitchCase="true" #pieEchartsWrapper></div>
+    <h1 class="display-4" jhiTranslate="home.title" *ngSwitchCase="false">Welcome, Java Hipster!</h1>
+    <div>
+        <div class="alert alert-warning" *ngSwitchCase="false">
+            <a class="alert-link" (click)="login()" jhiTranslate="global.messages.info.authenticated.link">sign in</a>
+        </div>
+
+        <div class="alert alert-warning" *ngSwitchCase="false">
+            <span jhiTranslate="global.messages.info.register.noaccount">You don't have an account yet?</span>
+            <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
+        </div>
+    </div>
+</div>

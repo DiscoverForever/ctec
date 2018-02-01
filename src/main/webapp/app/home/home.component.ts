@@ -38,13 +38,10 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        if (!this.account) {
-            this.login();
-        }
         this.currentYear = new Date().getFullYear();
-        this.getAlarmHistoryData();
         this.principal.identity().then((account) => {
             this.account = account;
+            this.getAlarmHistoryData();
         });
         this.registerAuthenticationSuccess();
     }
@@ -53,6 +50,7 @@ export class HomeComponent implements OnInit {
         this.eventManager.subscribe('authenticationSuccess', (message) => {
             this.principal.identity().then((account) => {
                 this.account = account;
+                this.getAlarmHistoryData();
             });
         });
     }
