@@ -2,19 +2,19 @@
     "ctecApp": {
         "perimeterProtectRegion" : {
             "home": {
-                "title": "Perimeter Protect Regions",
-                "createLabel": "创建新 Perimeter Protect Region",
-                "createOrEditLabel": "创建或编辑 Perimeter Protect Region",
-                "search": "查找 Perimeter Protect Region"
+                "title": "周界防护区域",
+                "createLabel": "创建新周界防护区域",
+                "createOrEditLabel": "创建或编辑周界防护区域",
+                "search": "查找 周界防护区域"
             },
-            "created": "Perimeter Protect Region {{ param }} 创建成功",
-            "updated": "Perimeter Protect Region {{ param }} 更新成功",
-            "deleted": "Perimeter Protect Region {{ param }} 删除成功",
+            "created": "周界防护区域 {{ param }} 创建成功",
+            "updated": "周界防护区域 {{ param }} 更新成功",
+            "deleted": "周界防护区域 {{ param }} 删除成功",
             "delete": {
-                "question": "你确定要删除 Perimeter Protect Region {{ id }} 吗？"
+                "question": "你确定要删除 周界防护区域 {{ id }} 吗？"
             },
             "detail": {
-                "title": "Perimeter Protect Region"
+                "title": "周界防护区域"
             },
             "leftUpX": "左上X",
             "leftUpY": "左上Y",
