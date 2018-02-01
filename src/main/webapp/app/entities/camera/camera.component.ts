@@ -11,7 +11,7 @@ import { PerimeterProtectRegionService } from '../perimeter-protect-region/perim
 import { PerimeterProtectRegion } from '../perimeter-protect-region/perimeter-protect-region.model';
 import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
 import * as JsMpeg from 'jsmpeg';
-import * as Cropper from "cropperjs";
+import * as Cropper from 'cropperjs';
 import * as Screenfull from 'screenfull';
 @Component({
     selector: 'jhi-camera',
@@ -42,7 +42,6 @@ export class CameraComponent implements OnInit, OnDestroy {
     currentCropperId: number;
     cropperActionsVisiable: boolean;
     cropper: Cropper;
-
 
     constructor(
         private cameraService: CameraService,
@@ -159,14 +158,16 @@ export class CameraComponent implements OnInit, OnDestroy {
 
     initVideo(videoUrl: string, canvas: any, id: number) {
         const client = new WebSocket('ws://localhost:9999');
-        const player = new JsMpeg(client, {canvas: canvas, autoplay: true});
+        const player = new JsMpeg(client, {canvas, autoplay: true});
         this.videos.push({id, player, client});
 
     }
 
     playVideo(videoUrl: string, event: any, id: number) {
         const canvas = event.currentTarget.parentNode.parentNode.children[0].children[0]
-        if (!this.videos.find(video => video.id === id)) this.initVideo(videoUrl, canvas, id);
+        if (!this.videos.find((video) => video.id === id)) {
+            this.initVideo(videoUrl, canvas, id);
+        }
         // this.videos.find(video => video.id === id).player.play()
     }
 
@@ -179,7 +180,7 @@ export class CameraComponent implements OnInit, OnDestroy {
             checkCrossOrigin: false,
             zoomable: false,
             center: true,
-            crop: function(e) {
+            crop(e) {
                 console.log(e.detail.x);
                 console.log(e.detail.y);
                 console.log(e.detail.width);
@@ -192,9 +193,9 @@ export class CameraComponent implements OnInit, OnDestroy {
     }
 
     stopVideo(id: number) {
-        const video = this.videos.find(video => video.id === id);
-        video.player.stop();
-        this.videos = this.videos.filter(video => video.id !== id);
+        const currentVideo = this.videos.find((video) => video.id === id);
+        currentVideo.player.stop();
+        this.videos = this.videos.filter((video) => video.id !== id);
     }
 
     /**
