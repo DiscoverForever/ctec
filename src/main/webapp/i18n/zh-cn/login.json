@@ -4,6 +4,8 @@
         "form": {
             "password": "密码",
             "password.placeholder": "您的密码",
+            "department": "部门",
+            "department.placeholder": "您的所属部门",
             "rememberme": "自动登录",
             "button": "登录"
         },

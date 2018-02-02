@@ -4,6 +4,8 @@
         "form": {
             "password": "Password",
             "password.placeholder": "Your password",
+            "department": "Department",
+            "department.placeholder": "Your department",
             "rememberme": "Remember me",
             "button": "Sign in"
         },
