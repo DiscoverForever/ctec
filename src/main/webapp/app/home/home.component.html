@@ -13,4 +13,35 @@
             <a class="alert-link" routerLink="register" jhiTranslate="global.messages.info.register.link">Register a new account</a>
         </div>
     </div>
+    <div class="table-responsive" *ngIf="alarmHistories">
+        <h2>最近10次预警</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><span>ID</span> <span class="fa fa-sort"></span></th>
+                    <th><span>报警截图</span> <span class="fa fa-sort"></span></th>
+                    <th><span>报警类型</span> <span class="fa fa-sort"></span></th>
+                    <th><span>报警时间</span> <span class="fa fa-sort"></span></th>
+                    <th><span>报警区域</span> <span class="fa fa-sort"></span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let alarmHistory of alarmHistories ;trackBy: trackId">
+                    <td><a [routerLink]="['../alarm-history', alarmHistory.id ]">{{alarmHistory.id}}</a></td>
+                    <td>
+                        <a *ngIf="alarmHistory.image" (click)="openFile(alarmHistory.imageContentType, alarmHistory.image)">
+                            <img [src]="'data:' + alarmHistory.imageContentType + ';base64,' + alarmHistory.image" style="max-height: 30px;" alt="alarmHistory image"/>
+                        </a>
+                    </td>
+                    <td jhiTranslate="{{'ctecApp.AlarmType.' + alarmHistory.alarmType}}">{{alarmHistory.alarmType}}</td>
+                    <td>{{alarmHistory.time | date:'medium'}}</td>
+                    <td>
+                        <div *ngIf="alarmHistory.camera">
+                            <a [routerLink]="['../camera', alarmHistory.camera?.id ]" >{{alarmHistory.camera?.cameraID}}</a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

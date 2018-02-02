@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {NgbModalRef} from '@ng-bootstrap/ng-bootstrap';
-import {JhiAlertService, JhiEventManager, JhiParseLinks} from 'ng-jhipster';
+import {JhiAlertService, JhiEventManager, JhiParseLinks, JhiDataUtils} from 'ng-jhipster';
 
 import {Account, LoginModalService, Principal} from '../shared';
 import {AlarmHistoryService} from '../entities/alarm-history/alarm-history.service';
@@ -34,7 +34,8 @@ export class HomeComponent implements OnInit {
                 private eventManager: JhiEventManager,
                 private alarmHistoryService: AlarmHistoryService,
                 private jhiAlertService: JhiAlertService,
-                private parseLinks: JhiParseLinks) {
+                private parseLinks: JhiParseLinks,
+                private dataUtils: JhiDataUtils) {
     }
 
     ngOnInit() {
@@ -250,6 +251,14 @@ export class HomeComponent implements OnInit {
             }
         });
         return count;
+    }
+
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
     }
 
     private onSuccess(data, headers) {
