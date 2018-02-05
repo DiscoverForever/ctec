@@ -6,7 +6,7 @@ services:
         #     - ~/volumes/jhipster/ctec/mysql/:/var/lib/mysql/
         environment:
             - MYSQL_USER=root
-            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_ALLOW_EMPTY_PASSWORD=no
             - MYSQL_DATABASE=ctec
         ports:
             - 3306:3306
