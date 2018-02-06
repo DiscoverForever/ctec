@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Http, Response } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
@@ -9,7 +10,7 @@ import { AlarmRegion } from '../alarm-region/alarm-region.model';
 import { AlarmRegionService } from '../alarm-region/alarm-region.service';
 import { PerimeterProtectRegionService } from '../perimeter-protect-region/perimeter-protect-region.service';
 import { PerimeterProtectRegion } from '../perimeter-protect-region/perimeter-protect-region.model';
-import { ITEMS_PER_PAGE, Principal, ResponseWrapper } from '../../shared';
+import { ITEMS_PER_PAGE, Principal, ResponseWrapper, createRequestOption } from '../../shared';
 import * as JsMpeg from 'jsmpeg';
 import * as Cropper from 'cropperjs';
 import * as Screenfull from 'screenfull';
@@ -21,6 +22,8 @@ import * as Screenfull from 'screenfull';
     ]
 })
 export class CameraComponent implements OnInit, OnDestroy {
+
+    private VIDEO_SERVER_URL = 'http://127.0.0.1:3000';
 
     currentAccount: any;
     cameras: Camera[];
@@ -53,7 +56,8 @@ export class CameraComponent implements OnInit, OnDestroy {
         private activatedRoute: ActivatedRoute,
         private router: Router,
         private eventManager: JhiEventManager,
-        private elementRef: ElementRef
+        private elementRef: ElementRef,
+        private http: Http
     ) {
         this.fullScreen = false;
         this.videos = [];
@@ -156,7 +160,9 @@ export class CameraComponent implements OnInit, OnDestroy {
         return result;
     }
 
-    initVideo(videoUrl: string, canvas: any, id: number) {
+    async initVideo(videoUrl: string, canvas: any, id: number) {
+        const videoServer = await this.getVideoTsServer('rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov');
+        console.log(videoServer)
         const client = new WebSocket('ws://localhost:9999');
         const player = new JsMpeg(client, {canvas, autoplay: true});
         this.videos.push({id, player, client});
@@ -268,6 +274,14 @@ export class CameraComponent implements OnInit, OnDestroy {
     cancleCropper() {
         this.cropperActionsVisiable = false;
         this.cropper.destroy();
+    }
+
+    /**
+     * 获取视频服务url
+     */
+    getVideoTsServer(streamUrl: string) {
+
+        return this.http.get(`${this.VIDEO_SERVER_URL}/start_server?streamUrl=${streamUrl}`).toPromise();
     }
     private onSuccess(data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
