@@ -161,16 +161,16 @@ export class CameraComponent implements OnInit, OnDestroy {
     }
 
     async initVideo(videoUrl: string, canvas: any, id: number) {
-        let {client, player} = await this.initClientAndPlayer(videoUrl, canvas, id);
+        const {client, player} = await this.initClientAndPlayer(videoUrl, canvas, id);
         client.addEventListener('open', () => {
             this.videos.push({id, player, client});
         });
-        client.addEventListener('error', async (error) => {
+        client.addEventListener('error', async(error) => {
             console.error('websocket视频解析服务出错', error);
             console.error('======尝试重连======');
             this.initClientAndPlayer(videoUrl, canvas, id);
         });
-        client.addEventListener('message', function (event) {
+        client.addEventListener('message', function(event) {
             // console.log('Message from server', event.data);
         });
     }
