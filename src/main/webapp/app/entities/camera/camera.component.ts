@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
-import { Jsonp, Response } from '@angular/http';
+import {Jsonp, Response, BaseRequestOptions, URLSearchParams} from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
@@ -23,7 +23,7 @@ import * as Screenfull from 'screenfull';
 })
 export class CameraComponent implements OnInit, OnDestroy {
 
-    private VIDEO_SERVER_URL = 'http://127.0.0.1:3000';
+    private VIDEO_SERVER_URL = 'http://' + window.location.hostname + ':3000';
     private REQ_ID = 0;
     currentAccount: any;
     cameras: Camera[];
@@ -161,18 +161,25 @@ export class CameraComponent implements OnInit, OnDestroy {
     }
 
     async initVideo(videoUrl: string, canvas: any, id: number) {
+        let {client, player} = await this.initClientAndPlayer(videoUrl, canvas, id);
+        client.addEventListener('open', () => {
+            this.videos.push({id, player, client});
+        });
+        client.addEventListener('error', async (error) => {
+            console.error('websocket视频解析服务出错', error);
+            console.error('======尝试重连======');
+            this.initClientAndPlayer(videoUrl, canvas, id);
+        });
+        client.addEventListener('message', function (event) {
+            // console.log('Message from server', event.data);
+        });
+    }
+
+    async initClientAndPlayer(videoUrl: string, canvas: any, id: number) {
         const res = await this.getVideoTsServer('rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov');
         const client = new WebSocket(res.data.wsUrl);
         const player = new JsMpeg(client, {canvas, autoplay: true});
-        this.videos.push({id, player, client});
-        client.onclose = async (event) => {
-            const res = await this.getVideoTsServer('rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov');
-            const client = new WebSocket(res.data.wsUrl);
-            const player = new JsMpeg(client, {canvas, autoplay: true});
-        }
-        client.onmessage = async (event) => {
-            console.log(event)
-        }
+        return {client, player};
     }
 
     playVideo(videoUrl: string, event: any, id: number) {
@@ -286,9 +293,12 @@ export class CameraComponent implements OnInit, OnDestroy {
      * 获取视频服务url
      */
     getVideoTsServer(streamUrl: string) {
-        const urlSchema = new URLSearchParams();
-        // urlSchema.set()
-        return this.jsonp.get(`${this.VIDEO_SERVER_URL}/start_server?callback=__ng_jsonp__.__req${this.REQ_ID++}.finished&streamUrl=${streamUrl}`).map((res) => res.json()).toPromise();
+        const options: BaseRequestOptions = new BaseRequestOptions();
+        const params: URLSearchParams = new URLSearchParams();
+        params.set('callback', `__ng_jsonp__.__req${this.REQ_ID++}.finished`);
+        params.set('streamUrl', streamUrl);
+        options.params = params;
+        return this.jsonp.get(`${this.VIDEO_SERVER_URL}/start_server`, options).map((res) => res.json()).toPromise();
     }
 
     private onSuccess(data, headers) {
