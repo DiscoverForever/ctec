@@ -1,4 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { JsonpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 
 import { CtecSharedModule } from '../../shared';
@@ -24,6 +25,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         CtecSharedModule,
+        JsonpModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
-import { Http, Response } from '@angular/http';
+import { Jsonp, Response } from '@angular/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
@@ -24,7 +24,7 @@ import * as Screenfull from 'screenfull';
 export class CameraComponent implements OnInit, OnDestroy {
 
     private VIDEO_SERVER_URL = 'http://127.0.0.1:3000';
-
+    private REQ_ID = 0;
     currentAccount: any;
     cameras: Camera[];
     error: any;
@@ -57,7 +57,7 @@ export class CameraComponent implements OnInit, OnDestroy {
         private router: Router,
         private eventManager: JhiEventManager,
         private elementRef: ElementRef,
-        private http: Http
+        private jsonp: Jsonp
     ) {
         this.fullScreen = false;
         this.videos = [];
@@ -161,12 +161,18 @@ export class CameraComponent implements OnInit, OnDestroy {
     }
 
     async initVideo(videoUrl: string, canvas: any, id: number) {
-        const videoServer = await this.getVideoTsServer('rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov');
-        console.log(videoServer)
-        const client = new WebSocket('ws://localhost:9999');
+        const res = await this.getVideoTsServer('rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov');
+        const client = new WebSocket(res.data.wsUrl);
         const player = new JsMpeg(client, {canvas, autoplay: true});
         this.videos.push({id, player, client});
-
+        client.onclose = async (event) => {
+            const res = await this.getVideoTsServer('rtsp://184.72.239.149/vod/mp4:BigBuckBunny_115k.mov');
+            const client = new WebSocket(res.data.wsUrl);
+            const player = new JsMpeg(client, {canvas, autoplay: true});
+        }
+        client.onmessage = async (event) => {
+            console.log(event)
+        }
     }
 
     playVideo(videoUrl: string, event: any, id: number) {
@@ -280,9 +286,11 @@ export class CameraComponent implements OnInit, OnDestroy {
      * 获取视频服务url
      */
     getVideoTsServer(streamUrl: string) {
-
-        return this.http.get(`${this.VIDEO_SERVER_URL}/start_server?streamUrl=${streamUrl}`).toPromise();
+        const urlSchema = new URLSearchParams();
+        // urlSchema.set()
+        return this.jsonp.get(`${this.VIDEO_SERVER_URL}/start_server?callback=__ng_jsonp__.__req${this.REQ_ID++}.finished&streamUrl=${streamUrl}`).map((res) => res.json()).toPromise();
     }
+
     private onSuccess(data, headers) {
         this.links = this.parseLinks.parse(headers.get('link'));
         this.totalItems = headers.get('X-Total-Count');
