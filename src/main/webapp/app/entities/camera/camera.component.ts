@@ -25,6 +25,7 @@ export class CameraComponent implements OnInit, OnDestroy {
 
     private VIDEO_SERVER_URL = 'http://' + window.location.hostname + ':3000';
     private REQ_ID = 0;
+    selectedArea: any;
     currentAccount: any;
     cameras: Camera[];
     error: any;
@@ -197,11 +198,16 @@ export class CameraComponent implements OnInit, OnDestroy {
             background: false,
             autoCrop: true,
             checkCrossOrigin: false,
-            zoomable: false,
+            zoomable: true,
             center: true,
             rotatable: false,
             scalable: false,
-            crop(e) {
+            movable: true,
+            cropBoxMovable: true,
+            cropBoxResizable: true,
+            crop: (e) => {
+                this.selectedArea = e.detail;
+                console.log(e.detail)
                 console.log(e.detail.x);
                 console.log(e.detail.y);
                 console.log(e.detail.width);
@@ -236,7 +242,9 @@ export class CameraComponent implements OnInit, OnDestroy {
      * @param {Camera} camera
      */
     setAlarmRegion(camera: Camera) {
-        const position = this.cropper.getData();
+        // getData存在bug故使用crop data
+        // const position = this.cropper.getData();
+        const position = this.selectedArea;
         const alarmRegion = new AlarmRegion();
         alarmRegion.leftUpX = position.x;
         alarmRegion.leftUpY = position.y;
@@ -248,7 +256,7 @@ export class CameraComponent implements OnInit, OnDestroy {
         alarmRegion.rightDownY = position.y + position.height;
         if (camera.alarmRegion) {
             alarmRegion.id = camera.alarmRegion.id;
-            this.alarmRegionService.update(alarmRegion);
+            this.alarmRegionService.update(alarmRegion).subscribe();
         } else {
             this.alarmRegionService.create(alarmRegion).subscribe((res: AlarmRegion) => {
                 camera.alarmRegion = res;
@@ -257,7 +265,7 @@ export class CameraComponent implements OnInit, OnDestroy {
                 console.error(error)
             })
         }
-        this.cancleCropper();
+        // this.cancleCropper();
     }
 
     /**
@@ -265,7 +273,9 @@ export class CameraComponent implements OnInit, OnDestroy {
      * @param {Camera} camera
      */
     setPerimeterRegion(camera: Camera) {
-        const position = this.cropper.getData();
+        // getData存在bug故使用crop data
+        // const position = this.cropper.getData();
+        const position = this.selectedArea;
         const perimeterProtectRegion = new PerimeterProtectRegion();
         perimeterProtectRegion.leftUpX = position.x;
         perimeterProtectRegion.leftUpY = position.y;
@@ -277,7 +287,7 @@ export class CameraComponent implements OnInit, OnDestroy {
         perimeterProtectRegion.rightDownY = position.y + position.height;
         if (camera.perimeterProtectRegion) {
             perimeterProtectRegion.id = camera.perimeterProtectRegion.id;
-            this.perimeterProtectRegionService.update(perimeterProtectRegion);
+            this.perimeterProtectRegionService.update(perimeterProtectRegion).subscribe();
         } else {
             this.perimeterProtectRegionService.create(perimeterProtectRegion).subscribe((res: PerimeterProtectRegion) => {
                 camera.perimeterProtectRegion = res;
@@ -286,13 +296,13 @@ export class CameraComponent implements OnInit, OnDestroy {
                 console.error(error)
             });
         }
-        this.cancleCropper();
+        // this.cancleCropper();
     }
     cancleCropper() {
         // destory存在bug
-        this.cropper.destroy();
+        // this.cropper.destroy();
         // todo清除选择区域记录
-        this.cropper.reset();
+        // this.cropper.reset();
         this.cropperActionsVisiable = false;
         this.currentCropperId = null;
     }
