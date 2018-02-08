@@ -50,65 +50,65 @@
                 <option value="OVERHAULING">{{'ctecApp.DeviceStatus.OVERHAULING' | translate}}</option>
             </select>
         </div>
-        <div class="form-group">
+        <div class="form-group form-inline">
             <label class="form-control-label" jhiTranslate="ctecApp.camera.fastRunWarn" for="field_fastRunWarn">Fast Run Warn</label>
             <input type="checkbox" class="form-control" name="fastRunWarn" id="field_fastRunWarn"
                 [(ngModel)]="camera.fastRunWarn" />
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.fastRunWarnLimit" for="field_fastRunWarnLimit">Fast Run Warn Limit</label>
+            <input type="number" class="form-control" name="fastRunWarnLimit" id="field_fastRunWarnLimit"
+                [(ngModel)]="camera.fastRunWarnLimit" [disabled]="!camera.fastRunWarn"/>
+        </div>
+        <div class="form-group form-inline">
             <label class="form-control-label" jhiTranslate="ctecApp.camera.peopleCountLimitWarn" for="field_peopleCountLimitWarn">People Count Limit Warn</label>
             <input type="checkbox" class="form-control" name="peopleCountLimitWarn" id="field_peopleCountLimitWarn"
                 [(ngModel)]="camera.peopleCountLimitWarn" />
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.peopleCountWarnLimit" for="field_peopleCountWarnLimit">People Count Warn Limit</label>
+            <input type="number" class="form-control" name="peopleCountWarnLimit" id="field_peopleCountWarnLimit"
+                [(ngModel)]="camera.peopleCountWarnLimit" [disabled]="!camera.peopleCountLimitWarn"/>
+        </div>
+        <div class="form-group form-inline">
             <label class="form-control-label" jhiTranslate="ctecApp.camera.crowdsGatherWarn" for="field_crowdsGatherWarn">Crowds Gather Warn</label>
             <input type="checkbox" class="form-control" name="crowdsGatherWarn" id="field_crowdsGatherWarn"
                 [(ngModel)]="camera.crowdsGatherWarn" />
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.crowdsGatherWarnLimit" for="field_crowdsGatherWarnLimit">Crowds Gather Warn Limit</label>
+            <input type="number" class="form-control" name="crowdsGatherWarnLimit" id="field_crowdsGatherWarnLimit"
+                [(ngModel)]="camera.crowdsGatherWarnLimit" [disabled]="!camera.crowdsGatherWarn"/>
+        </div>
+        <div class="form-group form-inline">
             <label class="form-control-label" jhiTranslate="ctecApp.camera.vigorouslyWavedWarn" for="field_vigorouslyWavedWarn">Vigorously Waved Warn</label>
             <input type="checkbox" class="form-control" name="vigorouslyWavedWarn" id="field_vigorouslyWavedWarn"
                 [(ngModel)]="camera.vigorouslyWavedWarn" />
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.vigorouslyWavedWarnLimit" for="field_vigorouslyWavedWarnLimit">Vigorously Waved Warn Limit</label>
+            <input type="number" class="form-control" name="vigorouslyWavedWarnLimit" id="field_vigorouslyWavedWarnLimit"
+                [(ngModel)]="camera.vigorouslyWavedWarnLimit" [disabled]="!camera.vigorouslyWavedWarn"/>
+        </div>
+        <div class="form-group form-inline">
             <label class="form-control-label" jhiTranslate="ctecApp.camera.fightWarn" for="field_fightWarn">Fight Warn</label>
             <input type="checkbox" class="form-control" name="fightWarn" id="field_fightWarn"
                 [(ngModel)]="camera.fightWarn" />
         </div>
         <div class="form-group">
+            <label class="form-control-label" jhiTranslate="ctecApp.camera.fightWarnLimit" for="field_fightWarnLimit">Fight Warn Limit</label>
+            <input type="number" class="form-control" name="fightWarnLimit" id="field_fightWarnLimit"
+                [(ngModel)]="camera.fightWarnLimit" [disabled]="!camera.fightWarn"/>
+        </div>
+        <div class="form-group form-inline">
             <label class="form-control-label" jhiTranslate="ctecApp.camera.abnormalActionWarn" for="field_abnormalActionWarn">Abnormal Action Warn</label>
             <input type="checkbox" class="form-control" name="abnormalActionWarn" id="field_abnormalActionWarn"
                 [(ngModel)]="camera.abnormalActionWarn" />
         </div>
         <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ctecApp.camera.fastRunWarnLimit" for="field_fastRunWarnLimit">Fast Run Warn Limit</label>
-            <input type="number" class="form-control" name="fastRunWarnLimit" id="field_fastRunWarnLimit"
-                [(ngModel)]="camera.fastRunWarnLimit" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ctecApp.camera.peopleCountWarnLimit" for="field_peopleCountWarnLimit">People Count Warn Limit</label>
-            <input type="number" class="form-control" name="peopleCountWarnLimit" id="field_peopleCountWarnLimit"
-                [(ngModel)]="camera.peopleCountWarnLimit" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ctecApp.camera.crowdsGatherWarnLimit" for="field_crowdsGatherWarnLimit">Crowds Gather Warn Limit</label>
-            <input type="number" class="form-control" name="crowdsGatherWarnLimit" id="field_crowdsGatherWarnLimit"
-                [(ngModel)]="camera.crowdsGatherWarnLimit" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ctecApp.camera.vigorouslyWavedWarnLimit" for="field_vigorouslyWavedWarnLimit">Vigorously Waved Warn Limit</label>
-            <input type="number" class="form-control" name="vigorouslyWavedWarnLimit" id="field_vigorouslyWavedWarnLimit"
-                [(ngModel)]="camera.vigorouslyWavedWarnLimit" />
-        </div>
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="ctecApp.camera.fightWarnLimit" for="field_fightWarnLimit">Fight Warn Limit</label>
-            <input type="number" class="form-control" name="fightWarnLimit" id="field_fightWarnLimit"
-                [(ngModel)]="camera.fightWarnLimit" />
-        </div>
-        <div class="form-group">
             <label class="form-control-label" jhiTranslate="ctecApp.camera.abnormalActionWarnLimit" for="field_abnormalActionWarnLimit">Abnormal Action Warn Limit</label>
             <input type="number" class="form-control" name="abnormalActionWarnLimit" id="field_abnormalActionWarnLimit"
-                [(ngModel)]="camera.abnormalActionWarnLimit" />
+                [(ngModel)]="camera.abnormalActionWarnLimit" [disabled]="!camera.abnormalActionWarn"/>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="ctecApp.camera.filterType" for="field_filterType">Filter Type</label>
