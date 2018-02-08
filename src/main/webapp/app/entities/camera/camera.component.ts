@@ -265,7 +265,7 @@ export class CameraComponent implements OnInit, OnDestroy {
                 console.error(error)
             })
         }
-        // this.cancleCropper();
+        this.cancleCropper();
     }
 
     /**
@@ -296,7 +296,7 @@ export class CameraComponent implements OnInit, OnDestroy {
                 console.error(error)
             });
         }
-        // this.cancleCropper();
+        this.cancleCropper();
     }
     cancleCropper() {
         // destory存在bug
