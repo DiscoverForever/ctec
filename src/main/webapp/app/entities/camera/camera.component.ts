@@ -199,6 +199,8 @@ export class CameraComponent implements OnInit, OnDestroy {
             checkCrossOrigin: false,
             zoomable: false,
             center: true,
+            rotatable: false,
+            scalable: false,
             crop(e) {
                 console.log(e.detail.x);
                 console.log(e.detail.y);
@@ -255,6 +257,7 @@ export class CameraComponent implements OnInit, OnDestroy {
                 console.error(error)
             })
         }
+        this.cancleCropper();
     }
 
     /**
@@ -283,10 +286,15 @@ export class CameraComponent implements OnInit, OnDestroy {
                 console.error(error)
             });
         }
+        this.cancleCropper();
     }
     cancleCropper() {
-        this.cropperActionsVisiable = false;
+        // destory存在bug
         this.cropper.destroy();
+        // todo清除选择区域记录
+        this.cropper.reset();
+        this.cropperActionsVisiable = false;
+        this.currentCropperId = null;
     }
 
     /**

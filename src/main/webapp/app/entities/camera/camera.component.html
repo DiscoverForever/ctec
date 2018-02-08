@@ -147,14 +147,14 @@
     </div>
     <div class="card-list-wrapper">
         <div class="card" *ngFor="let camera of cameras ;trackBy: trackId">
-            <div class="video-wrapper">
+            <div class="video-wrapper" (click)="currentCropperId = camera.id;cropperActionsVisiable = true;initCropper($event.currentTarget.children[1].children[0])">
                 <canvas></canvas>
-                <div class="mask-video">
-                    <img src="../../../content/images/bg-transprant.png" (click)="currentCropperId = camera.id;cropperActionsVisiable = true; initCropper($event.currentTarget)">
-                    <div class="actions-wrapper" *ngIf="cropperActionsVisiable && currentCropperId === camera.id">
-                        <button (click)="setAlarmRegion(camera)">设置预警区域</button>
-                        <button (click)="setPerimeterRegion(camera)">设置周界区域</button>
-                        <button (click)="cancleCropper()">取消</button>
+                <div class="mask-video" [ngStyle]="{'display': currentCropperId === camera.id && cropperActionsVisiable ? '' : 'none'}">
+                    <img src="../../../content/images/bg-transprant.png">
+                    <div class="actions-wrapper">
+                        <button (click)="$event.stopPropagation(); setAlarmRegion(camera)">设置预警区域</button>
+                        <button (click)="$event.stopPropagation(); setPerimeterRegion(camera)">设置周界区域</button>
+                        <button (click)="$event.stopPropagation(); cancleCropper()">取消</button>
                     </div>
                 </div>
                 <i class="fa fa-expand fa-1x"
