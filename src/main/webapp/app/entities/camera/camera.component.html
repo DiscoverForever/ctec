@@ -158,7 +158,7 @@
                     </div>
                 </div>
                 <i class="fa fa-expand fa-1x"
-                   (click)="requestFullscreen($event.currentTarget.parentNode);fullScreen = true"
+                   (click)="$event.stopPropagation(); requestFullscreen($event.currentTarget.parentNode);fullScreen = true"
                    *ngIf="!fullScreen"></i>
                 <i class="fa fa-compress fa-2x" (click)="cancleFullscreen();fullScreen = false" *ngIf="fullScreen"></i>
             </div>
