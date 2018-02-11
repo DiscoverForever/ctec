@@ -158,9 +158,9 @@
                     </div>
                 </div>
                 <i class="fa fa-expand fa-1x"
-                   (click)="requestFullscreen($event.currentTarget.parentNode);fullScreen = true"
+                   (click)="$event.stopPropagation(); requestFullscreen($event.currentTarget.parentNode);fullScreen = true"
                    *ngIf="!fullScreen"></i>
-                <i class="fa fa-compress fa-2x" (click)="cancleFullscreen();fullScreen = false" *ngIf="fullScreen"></i>
+                <i class="fa fa-compress fa-2x" (click)="$event.stopPropagation(); cancleFullscreen();fullScreen = false" *ngIf="fullScreen"></i>
             </div>
             <h5>ID: {{camera.cameraID}} IP:{{camera.cameraIP}}</h5>
             <div class="btn-group flex-btn-group-container">
